@@ -121,6 +121,22 @@ class User implements UserInterface
     }
 
     /**
+     * @return mixed
+     */
+    public function getFullname()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * @param mixed $fullName
+     */
+    public function setFullname($fullName): void
+    {
+        $this->fullName = $fullName;
+    }
+
+    /**
      * @see UserInterface
      */
     public function getRoles(): array

@@ -1,13 +1,17 @@
 {
     "devDependencies": {
+        "@babel/core": "^7.8.4",
+        "@babel/preset-env": "^7.8.4",
         "@babel/preset-react": "^7.8.3",
         "@symfony/webpack-encore": "^0.28.2",
         "axios": "^0.19.2",
+        "babel-loader": "^8.0.6",
         "core-js": "^3.0.0",
         "prop-types": "^15.7.2",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "regenerator-runtime": "^0.13.2",
+        "webpack": "^4.41.6",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",

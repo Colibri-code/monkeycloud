@@ -11,6 +11,7 @@ library.add(fab, faCheckSquare, faCoffee);
 
 import '../css/app.css';
 import Home from './components/Home';
+import UserRegister from './components/UserRegister';
 
-
-ReactDOM.render(<Router><Home /></Router>, document.getElementById('root'))
+ReactDOM.render(<Home />, document.getElementById('root'));
+ReactDOM.render(<UserRegister />, document.getElementById('form'));
