@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import $ from 'jquery';
 
 class UserRegister extends Component {
     constructor(props) {
