@@ -39,59 +39,50 @@ class User implements UserInterface
     private $userName;
 
     /**
-     * @ORM\Column(type="string")
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $fullName;
-
-    /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $department;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $company;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $team;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $bio;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $timezone;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $location;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $language;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $profileVisibility;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $headerImage;
+
 
     public function getId(): ?int
     {
@@ -117,23 +108,18 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->userName;
     }
 
     /**
-     * @return mixed
+     * @param string $userName
+     * @return User
      */
-    public function getFullname()
+    public function setUsername(string $userName): self
     {
-        return $this->fullName;
-    }
+        $this->userName = $userName;
 
-    /**
-     * @param mixed $fullName
-     */
-    public function setFullname($fullName): void
-    {
-        $this->fullName = $fullName;
+        return $this;
     }
 
     /**
@@ -186,4 +172,5 @@ class User implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
 }

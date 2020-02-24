@@ -29,6 +29,8 @@ class SignUp
      * )
      */
     protected $email;
+
+    protected $userName;
     /**
      * @Assert\NotBlank(message="Password is required")
      * @Assert\Length(
@@ -65,6 +67,28 @@ class SignUp
     {
         $this->email = $email;
     }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->userName;
+    }
+
+    /**
+     * @param string $userName
+     * @return SignUp
+     */
+    public function setUsername(string $userName): self
+    {
+        $this->userName = $userName;
+
+        return $this;
+    }
+
     /**
      * @return mixed
      */

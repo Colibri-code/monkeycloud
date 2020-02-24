@@ -5,10 +5,10 @@ class UserRegister extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            fullnameValue: '',
+            usernameValue: '',
             emailValue: '',
             passwordValue: '',
-            fullnameError: '',
+            usernameError: '',
             emailError: '',
             passwordError: '',
             successMessage: '',
@@ -18,9 +18,9 @@ class UserRegister extends Component {
     }
 
     handleChange(e) {
-        if(e.target.name === 'fullName') {
+        if(e.target.name === 'userName') {
             this.setState({
-                fullnameValue: e.target.value
+                usernameValue: e.target.value
             });
         }
 
@@ -41,17 +41,17 @@ class UserRegister extends Component {
         e.preventDefault();
 
         $.ajax({
-            url: 'http://127.0.0.1:8000/api/user',
+            url: 'https://127.0.0.1:8000/api/user',
             type: 'POST',
             data: {
-                fullName: this.state.fullnameValue,
+                userName: this.state.usernameValue,
                 email: this.state.emailValue,
                 password: this.state.passwordValue
             },
             dataType: 'json',
             success: function(response) {
                 this.setState({
-                    fullnameError: response.fullnameError ? response.fullnameError : null,
+                    usernameError: response.usernameError ? response.usernameError : null,
                     emailError: response.emailError ? response.emailError : null,
                     passwordError: response.passwordError ? response.passwordError : null,
                     successMessage: response.success_message ? response.success_message : null,
@@ -66,9 +66,9 @@ class UserRegister extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor="fullName">Full Name: </label>
-                <input type="text" name='fullName' value={this.state.fullnameValue} onChange={this.handleChange} id="fullName" placeholder="Full Name" />
-                <small>{this.state.fullnameError}</small>
+                <label htmlFor="userName">User Name: </label>
+                <input type="text" name='userName' value={this.state.usernameValue} onChange={this.handleChange} id="userName" placeholder="User Name" />
+                <small>{this.state.usernameError}</small>
 
                 <label htmlFor="email">Email: </label>
                 <input type="email" name='email' value={this.state.emailValue} onChange={this.handleChange} id="email" placeholder="Email" />

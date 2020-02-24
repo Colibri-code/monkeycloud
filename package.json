@@ -31,5 +31,6 @@
         "@fortawesome/react-fontawesome": "^0.1.8",
         "jquery": "^3.4.1",
         "react-router-dom": "^5.1.2"
-    }
+    },
+    "proxy": "https://127.0.0.1:8000"
 }
