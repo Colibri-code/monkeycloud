@@ -19,14 +19,14 @@ class Projects
     private $id;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
-     */
-    private $Sprints = [];
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $Name;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $Sprints = [];
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -53,18 +53,6 @@ class Projects
         return $this->id;
     }
 
-    public function getSprints(): ?array
-    {
-        return $this->Sprints;
-    }
-
-    public function setSprints(?array $Sprints): self
-    {
-        $this->Sprints = $Sprints;
-
-        return $this;
-    }
-
     public function getName(): ?string
     {
         return $this->Name;
@@ -73,6 +61,18 @@ class Projects
     public function setName(string $Name): self
     {
         $this->Name = $Name;
+
+        return $this;
+    }
+
+    public function getSprints(): ?array
+    {
+        return $this->Sprints;
+    }
+
+    public function setSprints(?array $Sprints): self
+    {
+        $this->Sprints = $Sprints;
 
         return $this;
     }
