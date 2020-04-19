@@ -3,6 +3,8 @@ Task Manager and Git Workflow
 
 Install Symfony Global `curl -sS https://get.symfony.com/cli/installer | bash`
 
+Install locally MySql `https://dev.mysql.com/downloads/mysql/`
+
 Install composer
 `https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos`
 
