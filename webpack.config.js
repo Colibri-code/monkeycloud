@@ -1,4 +1,4 @@
-var Encore = require('@symfony/webpack-encore');
+let Encore = require('@symfony/webpack-encore');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -70,28 +70,3 @@ var Encore = require('@symfony/webpack-encore');
 //     //.enableReactPreset()
 //     //.addEntry('admin', './assets/js/admin.js')
 // ;
-
-const path = require('path');
-
-
-module.exports = {
-    entry: './assets/js/app.js',
-    output: {
-        filename: 'app.js',
-        path: path.resolve(__dirname, 'public/build/')
-    },
-    module: {
-        rules: [
-            {
-                test: /\.m?js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-react']
-                    }
-                }
-            }
-        ]
-    }
-};
