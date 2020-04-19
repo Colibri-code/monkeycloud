@@ -9,7 +9,7 @@
 *.swo
 
 # Ignore PHP Storm project files
-.idea/
+.idea
 
 # Ignore Sublime project files
 *.sublime-project
