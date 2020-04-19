@@ -1,3 +1,31 @@
+# Ignore Mac Finder files
+.DS_Store
+._*
+
+# Ignore Emacs and Vim auto backup files
+*~
+[#]*[#]
+*.swp
+*.swo
+
+# Ignore PHP Storm project files
+.idea/
+
+# Ignore Sublime project files
+*.sublime-project
+*.sublime-workspace
+
+# Ignore Visual Studio Code project files
+*.vscode
+
+# Ignore logs and databases
+*.log
+*.sql
+*.sql.gz
+*.sqlite
+
+# Ignore SASS cache files
+*.scssc
 
 ###> symfony/framework-bundle ###
 /.env.local
