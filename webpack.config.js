@@ -1,72 +1,35 @@
 let Encore = require('@symfony/webpack-encore');
 
-// Manually configure the runtime environment if not already configured yet by the "encore" command.
-// It's useful when you use tools that rely on webpack.config.js file.
-// if (!Encore.isRuntimeEnvironmentConfigured()) {
-//     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
-// }
+ const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Encore
-//     // directory where compiled assets will be stored
-//     .setOutputPath('public/build/')
-//     // public path used by the web server to access the output path
-//     .setPublicPath('/build')
-//     // only needed for CDN's or sub-directory deploy
-//     //.setManifestKeyPrefix('build/')
-//
-//     /*
-//      * ENTRY CONFIG
-//      *
-//      * Add 1 entry for each "page" of your app
-//      * (including one that's included on every page - e.g. "app")
-//      *
-//      * Each entry will result in one JavaScript file (e.g. app.js)
-//      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
-//      */
-//     .addEntry('app', './assets/js/app.js')
-//     //.addEntry('page1', './assets/js/page1.js')
-//     //.addEntry('page2', './assets/js/page2.js')
-//
-//     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
-//     .splitEntryChunks()
-//
-//     // will require an extra script tag for runtime.js
-//     // but, you probably want this, unless you're building a single-page app
-//     .enableSingleRuntimeChunk()
-//
-//     /*
-//      * FEATURE CONFIG
-//      *
-//      * Enable & configure other features below. For a full
-//      * list of features, see:
-//      * https://symfony.com/doc/current/frontend.html#adding-more-features
-//      */
-//     .cleanupOutputBeforeBuild()
-//     .enableBuildNotifications()
-//     .enableSourceMaps(!Encore.isProduction())
-//     // enables hashed filenames (e.g. app.abc123.css)
-//     .enableVersioning(Encore.isProduction())
-//
-//     // enables @babel/preset-env polyfills
-//     .configureBabelPresetEnv((config) => {
-//         config.useBuiltIns = 'usage';
-//         config.corejs = 3;
-//     })
-//
-//     // enables Sass/SCSS support
-//     //.enableSassLoader()
-//
-//     // uncomment if you use TypeScript
-//     //.enableTypeScriptLoader()
-//
-//     // uncomment to get integrity="..." attributes on your script & link tags
-//     // requires WebpackEncoreBundle 1.4 or higher
-//     //.enableIntegrityHashes(Encore.isProduction())
-//
-//     // uncomment if you're having problems with a jQuery plugin
-//     //.autoProvidejQuery()
-//
-//     // uncomment if you use API Platform Admin (composer req api-admin)
-//     //.enableReactPreset()
-//     //.addEntry('admin', './assets/js/admin.js')
-// ;
+module.exports = {
+  // the output bundle won't be optimized for production but suitable for development
+  mode: 'development',
+  // the app entry point is /src/index.js
+  entry: path.resolve(__dirname, 'src', 'index.js'),
+  output: {
+  	// the output of the webpack build will be in /dist directory
+    path: path.resolve(__dirname, 'dist'),
+    // the filename of the JS bundle will be bundle.js
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+      	// for any file with a suffix of js or jsx
+        test: /\.jsx?$/,
+        // ignore transpiling JavaScript from node_modules as it should be that state
+        exclude: /node_modules/,
+        // use the babel-loader for transpiling JavaScript to a suitable format
+        loader: 'babel-loader',
+        options: {
+          // attach the presets to the loader (most projects use .babelrc file instead)
+          presets: ["@babel/preset-env", "@babel/preset-react"]
+        }
+      }
+    ]
+  },
+  // add a custom index.html as the template
+  plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'index.html') })]
+};
