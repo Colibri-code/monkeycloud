@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
+use App\Service\GitRepo;
 use Symfony\Component\HttpFoundation\Response;
 use symfony\Component\Routing\Annotation\Route;
 
-use GitElephant\Repository;
 
 class GitFlowController
 {
@@ -14,11 +14,12 @@ class GitFlowController
      * @Route("/git/ejemplo", name="app_git")
      */
     public function showGit(){
-        $showGit = Repository::open('../');
+        
 
-        $showGit->getStatusOutput();
+        $showGit = new GitRepo;
+
         return new Response(
-            '<html><body>Git Status: '. print_r($showGit) .'</body></html>'
+            '<html><body>Git Status: '. print_r($showGit->GitRepoBranches('../')) .'</body></html>'
         );
     }
 
