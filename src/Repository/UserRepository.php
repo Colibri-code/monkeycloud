@@ -7,9 +7,11 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,9 +21,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry,EntityManagerInterface $manager)
     {
         parent::__construct($registry, User::class);
+        $this->manager = $manager;
     }
 
     /**
@@ -41,6 +44,34 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->persist($user);
         $this->_em->flush();
     }
+
+    public function saveUser($userName, $roles, $email, $password)
+    {
+        $newUser = new User();
+
+        $newUser
+            ->setUsername($userName)
+            ->setRoles($roles)
+            ->setEmail($email)
+            ->setPassword($password);
+
+        $this->manager->persist($newUser);
+        $this->manager->flush();
+    }
+
+    public function removeUser(User $user)
+    {
+        $this->manager->remove($user);
+        $this->manager->flush();
+    }
+    public function updateUser(User $user): User
+    {
+    $this->manager->persist($user);
+    $this->manager->flush();
+
+    return $user;
+    }
+
 
     // /**
     //  * @return User[] Returns an array of User objects
