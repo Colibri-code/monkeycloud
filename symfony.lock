@@ -14,6 +14,9 @@
     "symfony/process": {
         "version": "v5.0.8"
     },
+    "symfony/property-info": {
+        "version": "v5.0.8"
+    },
     "webimpress/safe-writer": {
         "version": "2.0.1"
     }
