@@ -24,6 +24,37 @@ Class GitRepo{
         return  $repo -> getBranch(strval($branch));
     }
 
+    public function GitRepoMainBranch($repo){
+        // returns branch instance of current checked out branch
+        return ($this -> GitRepoUse($repo)) -> getMainBranch();
+    }
+
+    public function GitRepoCommit($repo){
+        //returns a commit instance of the current head of a specified repo
+        $repo = ($this->GitRepoUse($repo));
+        return $repo-> getCommit();   
+    }
+
+    public function GitRepoCommitSHA($repo,$sha){
+        //returns a commit instance of specified sha from a specified repo 
+        $repo = ($this->GitRepoUse($repo));
+        return $repo -> getCommit($sha);
+
+    }
+
+    public function GitRepoTags($repo){
+        // returns array of tag instances
+        $repo = ($this->GitRepoUse($repo));
+        return $repo->getTags();
+
+    }
+    public function GitRepoTag($repo,$tag){
+        // returns a tag instance by name
+        $repo = ($this->GitRepoUse($repo));
+        return $tag->getTag();
+        
+    }
+
 }
 
 
