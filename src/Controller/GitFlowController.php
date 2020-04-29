@@ -17,7 +17,7 @@ class GitFlowController
         
 
         $showGit = new GitRepo;
-        $showGitBranches = $showGit->GitRepoMainBranch('../');
+        $showGitBranches = $showGit->GitRepoLastTag('../');
         
         return new Response(
             '<html><body>Git Status: '. print_r($showGitBranches).'</body></html>'

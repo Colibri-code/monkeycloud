@@ -42,17 +42,31 @@ Class GitRepo{
 
     }
 
+    public function GitRepoCommitByTag($repo,$tag){
+        // returns commit instance for a tag in a specified repo
+        $repo = ($this->GitRepoUse($repo));
+        return $repo-> getCommit($tag);
+
+    }
+
     public function GitRepoTags($repo){
         // returns array of tag instances
         $repo = ($this->GitRepoUse($repo));
         return $repo->getTags();
 
     }
+    
     public function GitRepoTag($repo,$tag){
         // returns a tag instance by name
         $repo = ($this->GitRepoUse($repo));
         return $tag->getTag();
         
+    }
+
+    public function GitRepoLastTag($repo){
+        //returns last tag by date
+        $repo = ($this->GitRepoUse($repo));
+        return $repo->getLastTag();
     }
 
 }
