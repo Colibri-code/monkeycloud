@@ -8,14 +8,20 @@ use GitElephant\Repository;
 
 Class GitRepo{
 
-    function GitRepoUse($repo){
+    public function GitRepoUse($repo){
         // opens repository passed to repo
         return $repo = Repository::open($repo);
     }
 
-    function GitRepoBranches($repo){
+    public function GitRepoBranches($repo){
         // returns branches from the repo
         return ($this -> GitRepoUse($repo))-> getBranches();
+    }
+
+    public function GitRepoBranch($branch, $repo){
+        // returns specified branch from a specific repo
+        $repo = ($this->GitRepoUse($repo));
+        return  $repo -> getBranch(strval($branch));
     }
 
 }
