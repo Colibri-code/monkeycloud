@@ -9,7 +9,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Entity\User;
-use App\Repository\UserRespository;
+use App\Repository\UserRepository;
+
+/**
+ * Class UserApiController
+ * @package App\Controller
+ *
+ * @Route(path="/user")
+ */
 
 class UserApiController extends AbstractController
 {
@@ -19,16 +26,7 @@ class UserApiController extends AbstractController
     {
         $this->userRepository = $userRepository;
     }
-
-    /**
-     * @Route("/{reactRouting}", name="home", defaults={"reactRouting": null})
-     */
-    public function index()
-    {
-        return $this->render('user_api/index.html.twig');
-    }
-
-    /**
+   /**
      * @Route("/user", name="postUserAction", methods={"POST"})
      * @param Request $request
      * @return JsonResponse
@@ -45,71 +43,85 @@ class UserApiController extends AbstractController
         if (empty($userName) || empty($roles) || empty($email) || empty($password)) {
             throw new NotFoundHttpException('Expecting mandatory parameters!');
         }
-        $prueba = $data->prueba;
+
         $this->userRepository->saveUser($userName, $roles, $email, $password);
+
         return new JsonResponse(['status' => 'User created!'], Response::HTTP_CREATED);
     }
 
     /**
      * @Route("/users", name="getUsersAction",methods="GET")
+     * @param Request $request
+     * @return JsonResponse
      */
     public function getUsersAction(): JsonResponse
     {
-        $em = $this->getDoctrine()->getManager();
-        $users = $em->getRepository(User::class)->findAll();
+        $users = $this->userRepository->findAll();
+        $data = [];
 
-        if (!$users) {
-            throw new HttpException(400, "Invalid data");
+        foreach ($users as $user) {
+            $data[] = [
+                'id' => $user->getId(),
+                'userName' => $user->getUsername(),
+                'roles' => $user->getRoles(),
+                'email' => $user->getEmail(),
+                'password' => $user->getPassword(),
+            ];
         }
 
-        return $users;
+        return new JsonResponse($data, Response::HTTP_OK);
     }
 
-	/**
-	 * @Route("/user/{id}", name="getUserAction", methods="GET")
+    /**
+     * @Route("/get/{id}", name="getUserAction", methods="GET")
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function getUserAction(int $id): ? User
+    public function getUserAction(int $id): ? JsonResponse
     {
         $user = $this->userRepository->findOneBy(['id' => $id]);
 
-    $data = [
-        'userName' => $user->setUsername(),
-        'roles' => $user->setRoles(),
-        'email' => $user->getEmail(),
-        'password' => $user->setPassword(),
-    ];
+        $data = [
+            'userName' => $user->getUsername(),
+            'roles' => $user->getRoles(),
+            'email' => $user->getEmail(),
+            'password' => $user->getPassword(),
+        ];
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
 
-    return new JsonResponse($data, Response::HTTP_OK);
-	}
-
-	/**
-	 * @Route("user/{id}", name="putUserAction", methods="PUT")
-	 */
-    public function putUserAction(Request $request, int $id): ? User
+    /**
+     * @Route("/update/{id}", name="putUserAction", methods="PUT")
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function putUserAction(Request $request, int $id): ? JsonResponse
     {
-        
     $user = $this->userRepository->findOneBy(['id' => $id]);
     $data = json_decode($request->getContent(), true);
 
-    empty($data['userName']) ? true : $user->setFirstName($data['userName']);
-    empty($data['roles']) ? true : $user->setLastName($data['roles']);
+    empty($data['userName']) ? true : $user->setUsername($data['userName']);
+    empty($data['roles']) ? true : $user->setRoles($data['roles']);
     empty($data['email']) ? true : $user->setEmail($data['email']);
-    empty($data['password']) ? true : $user->setPhoneNumber($data['password']);
+    empty($data['password']) ? true : $user->setPassword($data['password']);
 
     $updatedUser = $this->userRepository->updateUser($user);
 
-    return new JsonResponse($updatedUser->toArray(), Response::HTTP_OK);
+    return new JsonResponse(['status' => 'User updated!'], Response::HTTP_OK);
     }
 
-	/**
-	 * @Route("/user/{id}", name="deleteUserAction", methods="DELETE")
-	 */
+    /**
+     * @Route("/delete/{id}", name="deleteUserAction", methods="DELETE")
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function deleteUserAction(int $id): ? JsonResponse
     {
     $user = $this->userRepository->findOneBy(['id' => $id]);
 
     $this->userRepository->removeUser($user);
 
-    return new JsonResponse(['status' => 'User deleted'], Response::HTTP_NO_CONTENT);
-    }   
+    return new JsonResponse(['status' => 'User deleted'], Response::HTTP_OK);
+    }  
+
 }
