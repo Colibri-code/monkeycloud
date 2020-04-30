@@ -4,7 +4,14 @@
 namespace App\Service;
 
 use GitElephant\Repository;
-
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessor;
+use Symfony\Component\PropertyAccess\PropertyAccessorBuilder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 Class GitRepo{
 
@@ -14,8 +21,19 @@ Class GitRepo{
     }
 
     public function GitRepoBranches($repo){
-        // returns branches from the repo
-        return ($this -> GitRepoUse($repo))-> getBranches();
+        // returns names of the branches from a specific repo
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+
+        $serializer = new Serializer($normalizers, $encoders);
+        $propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
+            ->enableExceptionOnInvalidIndex()
+            ->getPropertyAccessor();
+        $repo = $this -> gitRepoUse($repo);
+        $repoBranches= $repo->getBranches();
+        
+        //var_dump($Branches);
+        return json_encode($serializer->normalize($repoBranches, null, [AbstractNormalizer::ATTRIBUTES => ['name',]]));
     }
 
     public function GitRepoBranch($branch, $repo){

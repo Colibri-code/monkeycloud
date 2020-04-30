@@ -28,11 +28,10 @@ class GitFlowController
                 ]
         );
 
-        $properties = $phpDocExtractor->getProperties(get_class($showGitBranches['0']->getRepository()->getCaller()));
-
+        //$properties = $phpDocExtractor->getProperties(get_class($showGitBranches['0']->getRepository()->getCaller()));
+        //var_dump($showGitBranches);
         return new Response(
-            '<html><body>Git Status: '. print_r($properties).'</body></html>'
-
+            print_r($showGitBranches)
         );
     }
 
