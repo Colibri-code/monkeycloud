@@ -16,41 +16,57 @@ use Symfony\Component\Serializer\Serializer;
 Class GitRepo{
 
     public function GitRepoUse($repo){
-        // opens repository passed to repo
+        // opens repository passed to repo, use only on this class.
         return $repo = Repository::open($repo);
     }
 
     public function GitRepoBranches($repo){
-        // returns names of the branches from a specific repo
+        // returns names and sha of the branches from a specific repo
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
 
         $serializer = new Serializer($normalizers, $encoders);
-        $propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
-            ->enableExceptionOnInvalidIndex()
-            ->getPropertyAccessor();
+        //$propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
+          //  ->enableExceptionOnInvalidIndex()
+            //->getPropertyAccessor();
         $repo = $this -> gitRepoUse($repo);
         $repoBranches= $repo->getBranches();
-        
-        //var_dump($Branches);
-        return json_encode($serializer->normalize($repoBranches, null, [AbstractNormalizer::ATTRIBUTES => ['name',]]));
+
+        //var_dump($repoBranches);
+        return json_encode($serializer->normalize($repoBranches, null, [AbstractNormalizer::ATTRIBUTES => ['name','sha']]));
     }
 
     public function GitRepoBranch($branch, $repo){
-        // returns specified branch from a specific repo
+        // returns name and sha from specific repo and branch
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        //$propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
+          //  ->enableExceptionOnInvalidIndex()
+            //->disableExceptionOnInvalidPropertyPath()
+            //->getPropertyAccessor();
+
+        $serializer = new Serializer($normalizers, $encoders);
         $repo = ($this->GitRepoUse($repo));
-        return  $repo -> getBranch(strval($branch));
+        //var_dump($propertyAccessor->getValue($repo,'repositoryPath'));
+        return  json_encode($serializer->normalize(($repo -> getBranch($branch)), null, [AbstractNormalizer::ATTRIBUTES => ['name','sha']]));
     }
 
     public function GitRepoMainBranch($repo){
         // returns branch instance of current checked out branch
-        return ($this -> GitRepoUse($repo)) -> getMainBranch();
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $repo = ($this->GitRepoUse($repo));
+        $serializer = new Serializer($normalizers, $encoders);
+        return json_encode($serializer->normalize(($repo -> getMainBranch()), null, [AbstractNormalizer::ATTRIBUTES => ['name','sha']]));
     }
 
     public function GitRepoCommit($repo){
         //returns a commit instance of the current head of a specified repo
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];
         $repo = ($this->GitRepoUse($repo));
-        return $repo-> getCommit();   
+        $serializer = new Serializer($normalizers, $encoders);
+        return var_dump($repo-> getCommit());   
     }
 
     public function GitRepoCommitSHA($repo,$sha){

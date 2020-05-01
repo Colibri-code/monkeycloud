@@ -21,7 +21,7 @@ class GitFlowController
     public function showGit(){
 
         $showGit = new GitRepo;
-        $showGitBranches = $showGit->GitRepoBranches('../');
+        $showGitBranches = $showGit->GitRepoCommit('../');
         $reflectionExtractor = new ReflectionExtractor();
         $phpDocExtractor = new PropertyInfoExtractor(
             [$reflectionExtractor,
