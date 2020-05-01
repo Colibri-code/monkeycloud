@@ -43,6 +43,11 @@ class Projects
      */
     private $Users;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $key_project;
+
     public function __construct()
     {
         $this->Users = new ArrayCollection();
@@ -123,6 +128,18 @@ class Projects
         if ($this->Users->contains($user)) {
             $this->Users->removeElement($user);
         }
+
+        return $this;
+    }
+
+    public function getKeyProject(): ?string
+    {
+        return $this->key_project;
+    }
+
+    public function setKeyProject(string $key_project): self
+    {
+        $this->key_project = $key_project;
 
         return $this;
     }
