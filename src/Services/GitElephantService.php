@@ -61,12 +61,17 @@ Class GitRepo{
     }
 
     public function GitRepoCommit($repo){
-        //returns a commit instance of the current head of a specified repo
-        $encoders = [new XmlEncoder(), new JsonEncoder()];
-        $normalizers = [new ObjectNormalizer()];
+        //returns a json  containing information of the current head of a specified repo
         $repo = ($this->GitRepoUse($repo));
-        $serializer = new Serializer($normalizers, $encoders);
-        return var_dump($repo-> getCommit());   
+        $propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
+            ->enableExceptionOnInvalidIndex()
+            ->enableExceptionOnInvalidPropertyPath()
+            ->getPropertyAccessor();
+        
+        $repoObject = ($propertyAccessor->getValue($repo->getCommit(),'repository'));    
+        $callerObject = $propertyAccessor->getValue($repoObject,'caller');
+        return json_encode($propertyAccessor->getValue($callerObject, 'OutputLines'));
+
     }
 
     public function GitRepoCommitSHA($repo,$sha){
