@@ -77,7 +77,14 @@ Class GitRepo{
     public function GitRepoCommitSHA($repo,$sha){
         //returns a commit instance of specified sha from a specified repo 
         $repo = ($this->GitRepoUse($repo));
-        return $repo -> getCommit($sha);
+        $propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
+        ->enableExceptionOnInvalidIndex()
+        ->enableExceptionOnInvalidPropertyPath()
+        ->getPropertyAccessor();
+    
+    $repoObject = ($propertyAccessor->getValue($repo -> getCommit($sha),'repository'));    
+    $callerObject = $propertyAccessor->getValue($repoObject,'caller');
+        return json_encode($propertyAccessor->getValue($callerObject, 'OutputLines'));
 
     }
 
