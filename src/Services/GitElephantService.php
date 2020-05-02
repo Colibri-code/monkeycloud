@@ -100,8 +100,10 @@ Class GitRepo{
         // returns array of tag instances
 
         $repo = ($this->GitRepoUse($repo));
-        return $repo->getTags();
-
+        $encoders = [new jsonEncoder, new XmlEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers,$encoders);
+        return json_encode($serializer->normalize($repo->getTags(),null,[AbstractNormalizer::ATTRIBUTES=>['name','fullRef','sha']]));
     }
     
     public function GitRepoTag($repo,$tag){

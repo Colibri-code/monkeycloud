@@ -21,7 +21,7 @@ class GitFlowController
     public function showGit(){
 
         $showGit = new GitRepo;
-        $showGitBranches = $showGit->GitRepoTag('../','v0.1');
+        $showGitBranches = $showGit->GitRepoTags('../');
         $reflectionExtractor = new ReflectionExtractor();
         $phpDocExtractor = new PropertyInfoExtractor(
             [$reflectionExtractor,
