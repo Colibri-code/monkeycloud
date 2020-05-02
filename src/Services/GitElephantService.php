@@ -4,6 +4,7 @@
 namespace App\Service;
 
 use GitElephant\Repository;
+use Symfony\Bridge\Doctrine\DataCollector\ObjectParameter;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\PropertyAccess\PropertyAccessorBuilder;
@@ -97,6 +98,7 @@ Class GitRepo{
 
     public function GitRepoTags($repo){
         // returns array of tag instances
+
         $repo = ($this->GitRepoUse($repo));
         return $repo->getTags();
 
@@ -105,7 +107,11 @@ Class GitRepo{
     public function GitRepoTag($repo,$tag){
         // returns a tag instance by name
         $repo = ($this->GitRepoUse($repo));
-        return $tag->getTag();
+        $encoders = [new jsonEncoder, new XmlEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers,$encoders);
+        return json_encode($serializer->normalize($repo->getTag($tag),null,[AbstractNormalizer::ATTRIBUTES=>['name','fullRef','sha']]));
+          
         
     }
 
