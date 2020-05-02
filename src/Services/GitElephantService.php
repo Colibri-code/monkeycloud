@@ -120,7 +120,10 @@ Class GitRepo{
     public function GitRepoLastTag($repo){
         //returns last tag by date
         $repo = ($this->GitRepoUse($repo));
-        return $repo->getLastTag();
+        $encoders = [new jsonEncoder, new XmlEncoder()];
+        $normalizers = [new ObjectNormalizer()];
+        $serializer = new Serializer($normalizers,$encoders);
+        return json_encode($serializer->normalize($repo->getLastTag(),null,[AbstractNormalizer::ATTRIBUTES=>['name','fullRef','sha']]));
     }
 
 }
