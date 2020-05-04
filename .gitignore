@@ -35,6 +35,7 @@
 /public/bundles/
 /var/
 /vendor/
+/.env
 ###< symfony/framework-bundle ###
 
 ###> symfony/webpack-encore-bundle ###
@@ -43,4 +44,3 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
-.env
