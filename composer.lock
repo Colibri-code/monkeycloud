@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "cypresslab/gitelephant",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matteosister/GitElephant.git",
-                "reference": "58c2c96a33fe940757e14f64faee08e9d604f2e7"
+                "reference": "2c88a421bc7491643eddddcc44036a3f92b8d78c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/matteosister/GitElephant/zipball/58c2c96a33fe940757e14f64faee08e9d604f2e7",
-                "reference": "58c2c96a33fe940757e14f64faee08e9d604f2e7",
+                "url": "https://api.github.com/repos/matteosister/GitElephant/zipball/2c88a421bc7491643eddddcc44036a3f92b8d78c",
+                "reference": "2c88a421bc7491643eddddcc44036a3f92b8d78c",
                 "shasum": ""
             },
             "require": {
@@ -57,7 +57,7 @@
             "keywords": [
                 "git"
             ],
-            "time": "2020-04-17T09:57:42+00:00"
+            "time": "2020-05-01T05:16:25+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -6216,5 +6216,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
