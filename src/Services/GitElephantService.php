@@ -136,7 +136,7 @@ Class GitRepo{
         return json_encode($propertyAccessor->getValue($callerObject, 'outputLines'));
     }
 
-    public function GitRepoLog($repo, $limit,$branch){
+    public function GitRepoLog($repo, $limit, $branch){
         // returns array containing strings from the log of a repo from last commit of a branch to specified limit
         $repo = ($this->GitRepoUse($repo));
         $propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
@@ -144,13 +144,24 @@ Class GitRepo{
         ->enableExceptionOnInvalidPropertyPath()
         ->getPropertyAccessor();
         
-
         $logObject = $propertyAccessor->getValue($repo->getLog($branch, null, $limit), 'repository');
         $callerObject = $propertyAccessor->getValue($logObject, 'caller');
         //json_encode($propertyAccessor->getValue($logObject, 'outputLines'));
         return json_encode($propertyAccessor->getValue($callerObject, 'outputLines'));
     }
 
+    public function GitRepoTree($repo){
+         //returns array that contains entire tree of a repo
+        $treeObject = ($this->GitRepoUse($repo))->getTree();
+        $propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
+        ->enableExceptionOnInvalidIndex()
+        ->enableExceptionOnInvalidPropertyPath()
+        ->getPropertyAccessor();
+        $repositoryObject = $propertyAccessor->getValue($treeObject, 'repository');
+        $callerObject = $propertyAccessor->getValue($repositoryObject, 'caller');
+        return  json_encode($propertyAccessor->getValue($callerObject,'outputLines'));
+
+    }
 
 
 }

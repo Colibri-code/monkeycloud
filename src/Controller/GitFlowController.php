@@ -21,7 +21,7 @@ class GitFlowController
     public function showGit(){
 
         $showGit = new GitRepo;
-        $showGitBranches = $showGit->GitRepoLog('../',4,'Diego');
+        $showGitBranches = $showGit->GitRepoTree('../');
         $reflectionExtractor = new ReflectionExtractor();
         $phpDocExtractor = new PropertyInfoExtractor(
             [$reflectionExtractor,
@@ -32,7 +32,7 @@ class GitFlowController
         //var_dump($showGitBranches);
 
         return new Response(
-            $showGitBranches
+            print_r($showGitBranches)
         );
     }
 
