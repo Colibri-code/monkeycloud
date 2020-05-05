@@ -4,6 +4,7 @@
 namespace App\Service;
 
 use GitElephant\Repository;
+use GitElephant\Objects\Log;
 use Symfony\Bridge\Doctrine\DataCollector\ObjectParameter;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
@@ -48,17 +49,12 @@ Class GitRepo{
 
         $serializer = new Serializer($normalizers, $encoders);
         $repo = ($this->GitRepoUse($repo));
-        //var_dump($propertyAccessor->getValue($repo,'repositoryPath'));
-        return  json_encode($serializer->normalize(($repo -> getBranch($branch)), null, [AbstractNormalizer::ATTRIBUTES => ['name','sha']]));
-    }
-
-    public function GitRepoMainBranch($repo){
         // returns branch instance of current checked out branch
         $encoders = [new XmlEncoder(), new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
         $repo = ($this->GitRepoUse($repo));
         $serializer = new Serializer($normalizers, $encoders);
-        return json_encode($serializer->normalize(($repo -> getMainBranch()), null, [AbstractNormalizer::ATTRIBUTES => ['name','sha']]));
+        return json_encode($serializer->normalize(($repo -> getBranch($branch)), null, [AbstractNormalizer::ATTRIBUTES => ['name','sha']]));
     }
 
     public function GitRepoCommit($repo){
@@ -124,6 +120,35 @@ Class GitRepo{
         $normalizers = [new ObjectNormalizer()];
         $serializer = new Serializer($normalizers,$encoders);
         return json_encode($serializer->normalize($repo->getLastTag(),null,[AbstractNormalizer::ATTRIBUTES=>['name','fullRef','sha']]));
+    }
+
+    public function GitRepoLogs($repo){
+        // returns array containing strings from the log of a repo
+        $repo = ($this->GitRepoUse($repo));
+        $propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
+        ->enableExceptionOnInvalidIndex()
+        ->enableExceptionOnInvalidPropertyPath()
+        ->getPropertyAccessor();
+        
+        $logObject = $propertyAccessor->getValue($repo->getLog(), 'repository');
+        $callerObject = $propertyAccessor->getValue($logObject, 'caller');
+        //json_encode($propertyAccessor->getValue($logObject, 'outputLines'));
+        return json_encode($propertyAccessor->getValue($callerObject, 'outputLines'));
+    }
+
+    public function GitRepoLog($repo, $limit,$branch){
+        // returns array containing strings from the log of a repo from last commit of a branch to specified limit
+        $repo = ($this->GitRepoUse($repo));
+        $propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
+        ->enableExceptionOnInvalidIndex()
+        ->enableExceptionOnInvalidPropertyPath()
+        ->getPropertyAccessor();
+        
+
+        $logObject = $propertyAccessor->getValue($repo->getLog($branch, null, $limit, $limit), 'repository');
+        $callerObject = $propertyAccessor->getValue($logObject, 'caller');
+        //json_encode($propertyAccessor->getValue($logObject, 'outputLines'));
+        return json_encode($propertyAccessor->getValue($callerObject, 'outputLines'));
     }
 
 }
