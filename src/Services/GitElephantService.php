@@ -123,7 +123,7 @@ Class GitRepo{
     }
 
     public function GitRepoLogs($repo){
-        // returns array containing strings from the log of a repo
+        // returns array containing strings from the entire log of a repo
         $repo = ($this->GitRepoUse($repo));
         $propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
         ->enableExceptionOnInvalidIndex()
