@@ -163,6 +163,19 @@ Class GitRepo{
 
     }
 
+    public function GitRepoTreeC($repo,string $commit){
+            //returns array that contains entire tree of a repo for a given commit
+           $treeObject = ($this->GitRepoUse($repo))->getTree($commit);
+           $propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
+           ->enableExceptionOnInvalidIndex()
+           ->enableExceptionOnInvalidPropertyPath()
+           ->getPropertyAccessor();
+           $repositoryObject = $propertyAccessor->getValue($treeObject, 'repository');
+           $callerObject = $propertyAccessor->getValue($repositoryObject, 'caller');
+           return  json_encode($propertyAccessor->getValue($callerObject,'outputLines'));
+
+    }
+
 
 }
 
