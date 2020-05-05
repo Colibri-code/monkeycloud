@@ -145,11 +145,13 @@ Class GitRepo{
         ->getPropertyAccessor();
         
 
-        $logObject = $propertyAccessor->getValue($repo->getLog($branch, null, $limit, $limit), 'repository');
+        $logObject = $propertyAccessor->getValue($repo->getLog($branch, null, $limit), 'repository');
         $callerObject = $propertyAccessor->getValue($logObject, 'caller');
         //json_encode($propertyAccessor->getValue($logObject, 'outputLines'));
         return json_encode($propertyAccessor->getValue($callerObject, 'outputLines'));
     }
+
+
 
 }
 
