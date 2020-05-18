@@ -17,43 +17,31 @@ use Symfony\Component\Serializer\Serializer;
 
 Class GitRepo{
 
-    public function GitRepoUse($repo){
-        // opens repository passed to repo, use only on this class.
+    private function GitRepoUse($repo){
+        // opens repository passed to repo, use within this class
         return $repo = Repository::open($repo);
     }
 
     public function GitRepoBranches($repo){
         // returns names and sha of the branches from a specific repo
-        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
-
         $serializer = new Serializer($normalizers, $encoders);
-        //$propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
-          //  ->enableExceptionOnInvalidIndex()
-            //->getPropertyAccessor();
+      
         $repo = $this -> gitRepoUse($repo);
         $repoBranches= $repo->getBranches();
 
-        //var_dump($repoBranches);
+
         return json_encode($serializer->normalize($repoBranches, null, [AbstractNormalizer::ATTRIBUTES => ['name','sha']]));
     }
 
     public function GitRepoBranch($branch, $repo){
         // returns name and sha from specific repo and branch
-        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
-        //$propertyAccessor = PropertyAccess::createPropertyAccessorBuilder()
-          //  ->enableExceptionOnInvalidIndex()
-            //->disableExceptionOnInvalidPropertyPath()
-            //->getPropertyAccessor();
 
         $serializer = new Serializer($normalizers, $encoders);
         $repo = ($this->GitRepoUse($repo));
-        // returns branch instance of current checked out branch
-        $encoders = [new XmlEncoder(), new JsonEncoder()];
-        $normalizers = [new ObjectNormalizer()];
-        $repo = ($this->GitRepoUse($repo));
-        $serializer = new Serializer($normalizers, $encoders);
         return json_encode($serializer->normalize(($repo -> getBranch($branch)), null, [AbstractNormalizer::ATTRIBUTES => ['name','sha']]));
     }
 
@@ -96,7 +84,7 @@ Class GitRepo{
         // returns array of tag instances
 
         $repo = ($this->GitRepoUse($repo));
-        $encoders = [new jsonEncoder, new XmlEncoder()];
+        $encoders = [new jsonEncoder];
         $normalizers = [new ObjectNormalizer()];
         $serializer = new Serializer($normalizers,$encoders);
         return json_encode($serializer->normalize($repo->getTags(),null,[AbstractNormalizer::ATTRIBUTES=>['name','fullRef','sha']]));
@@ -105,7 +93,7 @@ Class GitRepo{
     public function GitRepoTag($repo,$tag){
         // returns a tag instance by name
         $repo = ($this->GitRepoUse($repo));
-        $encoders = [new jsonEncoder, new XmlEncoder()];
+        $encoders = [new jsonEncoder];
         $normalizers = [new ObjectNormalizer()];
         $serializer = new Serializer($normalizers,$encoders);
         return json_encode($serializer->normalize($repo->getTag($tag),null,[AbstractNormalizer::ATTRIBUTES=>['name','fullRef','sha']]));
@@ -116,7 +104,7 @@ Class GitRepo{
     public function GitRepoLastTag($repo){
         //returns last tag by date
         $repo = ($this->GitRepoUse($repo));
-        $encoders = [new jsonEncoder, new XmlEncoder()];
+        $encoders = [new jsonEncoder];
         $normalizers = [new ObjectNormalizer()];
         $serializer = new Serializer($normalizers,$encoders);
         return json_encode($serializer->normalize($repo->getLastTag(),null,[AbstractNormalizer::ATTRIBUTES=>['name','fullRef','sha']]));
@@ -132,7 +120,6 @@ Class GitRepo{
         
         $logObject = $propertyAccessor->getValue($repo->getLog(), 'repository');
         $callerObject = $propertyAccessor->getValue($logObject, 'caller');
-        //json_encode($propertyAccessor->getValue($logObject, 'outputLines'));
         return json_encode($propertyAccessor->getValue($callerObject, 'outputLines'));
     }
 
@@ -146,7 +133,6 @@ Class GitRepo{
         
         $logObject = $propertyAccessor->getValue($repo->getLog($branch, null, $limit), 'repository');
         $callerObject = $propertyAccessor->getValue($logObject, 'caller');
-        //json_encode($propertyAccessor->getValue($logObject, 'outputLines'));
         return json_encode($propertyAccessor->getValue($callerObject, 'outputLines'));
     }
 
