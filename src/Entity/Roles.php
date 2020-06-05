@@ -21,6 +21,11 @@ class Roles
      */
     private $rol;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\UserRoles", inversedBy="Roles")
+     */
+    private $userRoles;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +39,18 @@ class Roles
     public function setRol(string $rol): self
     {
         $this->rol = $rol;
+
+        return $this;
+    }
+
+    public function getUserRoles(): ?UserRoles
+    {
+        return $this->userRoles;
+    }
+
+    public function setUserRoles(?UserRoles $userRoles): self
+    {
+        $this->userRoles = $userRoles;
 
         return $this;
     }

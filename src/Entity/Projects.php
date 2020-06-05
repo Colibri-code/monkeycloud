@@ -31,6 +31,11 @@ class Projects
      */
     private $Labels;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Sprints", mappedBy="Project", cascade={"persist", "remove"})
+     */
+    private $ProjectID;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,5 +75,22 @@ class Projects
         $this->Labels = $Labels;
 
         return $this;
+    }
+
+    public function getProjectID(): ?Sprints
+    {
+        return $this->ProjectID;
+    }
+
+    public function setProjectID(Sprints $ProjectID): self
+    {
+        $this->ProjectID = $ProjectID;
+
+        // set the owning side of the relation if necessary
+        if ($ProjectID->getProject() !== $this) {
+            $ProjectID->setProject($this);
+        }
+
+        return $this->id;
     }
 }

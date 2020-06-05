@@ -57,16 +57,6 @@ class User
     private $Bio;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\TimeZone", inversedBy="UserTimeZone", cascade={"persist", "remove"})
-     */
-    private $Timezone;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\TimeZone", inversedBy="UserLocation", cascade={"persist", "remove"})
-     */
-    private $Location;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Languages", mappedBy="UserLanguage")
      */
     private $Languages;
@@ -76,9 +66,35 @@ class User
      */
     private $IsVisible;
 
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $Location;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $TimeZone;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Task", mappedBy="UserThatCreated", cascade={"persist", "remove"})
+     */
+    private $TaskCreated;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Task", inversedBy="Assigned")
+     */
+    private $AssignedTask;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserRoles", mappedBy="User")
+     */
+    private $userRoles;
+
     public function __construct()
     {
         $this->Languages = new ArrayCollection();
+        $this->userRoles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -170,30 +186,6 @@ class User
         return $this;
     }
 
-    public function getTimezone(): ?TimeZone
-    {
-        return $this->Timezone;
-    }
-
-    public function setTimezone(?TimeZone $Timezone): self
-    {
-        $this->Timezone = $Timezone;
-
-        return $this;
-    }
-
-    public function getLocation(): ?TimeZone
-    {
-        return $this->Location;
-    }
-
-    public function setLocation(?TimeZone $Location): self
-    {
-        $this->Location = $Location;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Languages[]
      */
@@ -233,6 +225,90 @@ class User
     public function setIsVisible(bool $IsVisible): self
     {
         $this->IsVisible = $IsVisible;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->Location;
+    }
+
+    public function setLocation(?string $Location): self
+    {
+        $this->Location = $Location;
+
+        return $this;
+    }
+
+    public function getTimeZone(): ?string
+    {
+        return $this->TimeZone;
+    }
+
+    public function setTimeZone(?string $TimeZone): self
+    {
+        $this->TimeZone = $TimeZone;
+
+        return $this;
+    }
+
+    public function getTaskCreated(): ?Task
+    {
+        return $this->TaskCreated;
+    }
+
+    public function setTaskCreated(Task $TaskCreated): self
+    {
+        $this->TaskCreated = $TaskCreated;
+
+        // set the owning side of the relation if necessary
+        if ($TaskCreated->getUserThatCreated() !== $this) {
+            $TaskCreated->setUserThatCreated($this);
+        }
+
+        return $this->id;
+    }
+
+    public function getAssignedTask(): ?Task
+    {
+        return $this->AssignedTask;
+    }
+
+    public function setAssignedTask(?Task $AssignedTask): self
+    {
+        $this->AssignedTask = $AssignedTask;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserRoles[]
+     */
+    public function getUserRoles(): Collection
+    {
+        return ($this->userRoles)->id;
+    }
+
+    public function addUserRole(UserRoles $userRole): self
+    {
+        if (!$this->userRoles->contains($userRole)) {
+            $this->userRoles[] = $userRole;
+            $userRole->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserRole(UserRoles $userRole): self
+    {
+        if ($this->userRoles->contains($userRole)) {
+            $this->userRoles->removeElement($userRole);
+            // set the owning side to null (unless already changed)
+            if ($userRole->getUser() === $this) {
+                $userRole->setUser(null);
+            }
+        }
 
         return $this;
     }
