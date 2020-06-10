@@ -22,11 +22,6 @@ class Company
     private $CompName;
 
     /**
-     * @ORM\Column(type="string", length=20, nullable=true)
-     */
-    private $Department;
-
-    /**
      * @ORM\Column(type="json", nullable=true)
      */
     private $Departments = [];
@@ -64,18 +59,6 @@ class Company
     public function setCompName(string $CompName): self
     {
         $this->CompName = $CompName;
-
-        return $this;
-    }
-
-    public function getDepartment(): ?string
-    {
-        return $this->Department;
-    }
-
-    public function setDepartment(?string $Department): self
-    {
-        $this->Department = $Department;
 
         return $this;
     }
