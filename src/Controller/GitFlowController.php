@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Service\GitRepo;
+use App\Services\GitRepo;
 use Symfony\Component\HttpFoundation\Response;
 use symfony\Component\Routing\Annotation\Route;
 

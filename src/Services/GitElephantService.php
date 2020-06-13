@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Service;
+namespace App\Services;
 
 use GitElephant\Repository;
 use GitElephant\Objects\Log;
