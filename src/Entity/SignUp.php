@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\SignupRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\SignUpRepository")
  */
-abstract class Signup implements UserInterface
+abstract class SignUp implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -183,4 +183,7 @@ abstract class Signup implements UserInterface
 
         return $this->$UserNameNick;
     }
+
+    
+
 }

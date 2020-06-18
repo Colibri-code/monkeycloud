@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Signup;
+use App\Entity\SignUp;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -42,7 +42,7 @@ class SignUpRepository extends ServiceEntityRepository implements PasswordUpgrad
 
     public function saveSignup($email, $password, $FullName){
 
-        $newSignup = new Signup();
+        $newSignup = new SignUp();
         
         $newSignup
             ->setEmail($email)

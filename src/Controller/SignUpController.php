@@ -2,15 +2,16 @@
 
 namespace App\Controller;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\SignUpRepository;
 
-class SignupController extends AbstractController
+class SignUpController extends AbstractController
 {
-    private $SignupRepository;
+    private $SignUpRepository;
 
     public function __construct(SignUpRepository $SignUpRepository)
         {
@@ -32,8 +33,9 @@ class SignupController extends AbstractController
                 throw new NotFoundHttpException('Expecting mandatory parameters!');
             }
             
-        $this->SignupRepository->saveSignUp($email, $password, $FullName);
+        $this->SignUpRepository->saveSignUp($email, $password, $FullName);
             
         return new JsonResponse(['message' => 'Success'], Response::HTTP_Created);
         }
+    
 }
