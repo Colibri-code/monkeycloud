@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-Class GitRepo{
+Class GitElephantService{
 
     private function GitRepoUse($repo){
         // opens repository passed to repo, use within this class

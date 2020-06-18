@@ -2,12 +2,13 @@
 
 namespace App\Repository;
 
-use App\Entity\SignUp;
+use App\Entity\Signup;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @method SignUp|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,9 +18,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class SignUpRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
         parent::__construct($registry, Signup::class);
+        $this->manager = $manager;
+
     }
 
     /**
@@ -36,6 +39,19 @@ class SignUpRepository extends ServiceEntityRepository implements PasswordUpgrad
         $this->_em->flush();
     }
 
+
+    public function saveSignup($email, $password, $FullName){
+
+        $newSignup = new Signup();
+        
+        $newSignup
+            ->setEmail($email)
+            ->setpassword($password)
+            ->setFullName($FullName);
+        
+            $this->manager->persist($newSignup);
+            $this->manager->flush();
+    }
     // /**
     //  * @return Signup[] Returns an array of Signup objects
     //  */

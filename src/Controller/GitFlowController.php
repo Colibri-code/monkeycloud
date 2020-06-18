@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Services\GitRepo;
+use App\Services\GitElephantService;
 use Symfony\Component\HttpFoundation\Response;
 use symfony\Component\Routing\Annotation\Route;
 
@@ -20,7 +20,7 @@ class GitFlowController
      */
     public function showGit(){
 
-        $showGit = new GitRepo;
+        $showGit = new GitElephantService;
         $showGitBranches = $showGit->GitRepoTreeC('../','89bd162');
         $reflectionExtractor = new ReflectionExtractor();
         $phpDocExtractor = new PropertyInfoExtractor(
