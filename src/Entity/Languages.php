@@ -22,9 +22,10 @@ class Languages
     private $language;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="language")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="Languages")
      */
     private $UserLanguage;
+
 
     public function getId(): ?int
     {
@@ -54,4 +55,5 @@ class Languages
 
         return $this->id;
     }
+
 }

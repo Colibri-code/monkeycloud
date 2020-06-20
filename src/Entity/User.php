@@ -5,11 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -17,24 +19,6 @@ class User
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\SignUp", inversedBy="UserPassword", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Email;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\SignUp", inversedBy="UserPassword", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Password;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\SignUp", inversedBy="UserNameNick", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $UserName;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Company", inversedBy="CompanyUser", cascade={"persist", "remove"})
@@ -91,6 +75,28 @@ class User
      */
     private $userRoles;
 
+        /**
+    * @ORM\Column(type="string", length=180, unique=true)
+    */
+    
+    private $email;
+
+    /**
+     * @var string The hashed password
+     * @ORM\Column(type="string")
+     */
+    private $password;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $FullName;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $UserName;
+
     public function __construct()
     {
         $this->Languages = new ArrayCollection();
@@ -102,41 +108,6 @@ class User
         return $this->id;
     }
 
-    public function getEmail(): ?SignUp
-    {
-        return $this->Email;
-    }
-
-    public function setEmail(SignUp $Email): self
-    {
-        $this->Email = $Email;
-
-        return $this;
-    }
-
-    public function getPassword(): ?SignUp
-    {
-        return $this->Password;
-    }
-
-    public function setPassword(SignUp $Password): self
-    {
-        $this->Password = $Password;
-
-        return $this;
-    }
-
-    public function getUserName(): ?SignUp
-    {
-        return $this->UserName;
-    }
-
-    public function setUserName(SignUp $UserName): self
-    {
-        $this->UserName = $UserName;
-
-        return $this;
-    }
 
     public function getCompany(): ?Company
     {
@@ -312,4 +283,78 @@ class User
 
         return $this;
     }
+    
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function getFullName(): ?string
+    {
+        return $this->FullName;
+    }
+
+    public function setFullName(string $FullName): self
+    {
+        $this->FullName = $FullName;
+
+        return $this;
+    }
+
+
+
+    public function getRoles(){
+        return ['ROLE_USER'];
+    }
+
 }

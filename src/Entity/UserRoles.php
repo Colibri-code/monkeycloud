@@ -36,6 +36,7 @@ class UserRoles
     public function __construct()
     {
         $this->Roles = new ArrayCollection();
+        $this->Languages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -97,4 +98,5 @@ class UserRoles
 
         return $this;
     }
+    
 }
