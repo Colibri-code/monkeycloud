@@ -16,22 +16,25 @@ use Doctrine\ORM\EntityManagerInterface;
  */
 class UserRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry, EntityManagerINterface $manager)
+    private $manager;
+    
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
         parent::__construct($registry, User::class);
         $this->manager = $manager;
     }
 
     // Handles the sign in of a new user in the application
-    public function newUser($email, $password, $FullName, $UserName){
+    public function newUser($email, $password, $FullName, $UserName, $IsVisible){
 
         $newSignin = new User();
 
-        $newSignin()
+        $newSignin
             ->setEmail($email)
             ->setPassword($password)
             ->setFullName($FullName)
-            ->setUserName($UserName);
+            ->setUserName($UserName)
+            ->setIsVisible($IsVisible);
         $this->manager->persist($newSignin);
         $this->manager->flush();
     

@@ -75,10 +75,9 @@ class User implements UserInterface
      */
     private $userRoles;
 
-        /**
+    /**
     * @ORM\Column(type="string", length=180, unique=true)
     */
-    
     private $email;
 
     /**
@@ -302,11 +301,17 @@ class User implements UserInterface
      *
      * @see UserInterface
      */
-    public function getUsername(): string
+    public function getUserName(): string
     {
-        return (string) $this->email;
+        return (string) $this->UserName;
     }
 
+    public function setUserName(string $UserName): self
+    {
+        $this->UserName = $UserName;
+        return $this;
+    }
+    
     /**
      * @see UserInterface
      */
@@ -350,8 +355,6 @@ class User implements UserInterface
 
         return $this;
     }
-
-
 
     public function getRoles(){
         return ['ROLE_USER'];
