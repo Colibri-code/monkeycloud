@@ -19,7 +19,7 @@ class UserRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry, EntityManagerINterface $manager)
     {
         parent::__construct($registry, User::class);
-        this->manager = $manager;
+        $this->manager = $manager;
     }
 
     // Handles the sign in of a new user in the application
