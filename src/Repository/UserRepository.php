@@ -6,7 +6,7 @@ use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Doctrine\ORM\EntityManager;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -40,5 +40,7 @@ class UserRepository extends ServiceEntityRepository
     
     
     }
+
+
 
 }

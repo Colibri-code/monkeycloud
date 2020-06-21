@@ -237,7 +237,7 @@ class User implements UserInterface
             $TaskCreated->setUserThatCreated($this);
         }
 
-        return $this->id;
+        return $this;
     }
 
     public function getAssignedTask(): ?Task
@@ -257,7 +257,7 @@ class User implements UserInterface
      */
     public function getUserRoles(): Collection
     {
-        return ($this->userRoles)->id;
+        return $this->userRoles;
     }
 
     public function addUserRole(UserRoles $userRole): self
