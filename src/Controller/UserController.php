@@ -52,7 +52,7 @@ class UserController extends AbstractController
     /**
      * @Route("/show/{id}", name="show_user", methods={"GET"})
      */
-    public function showUser(int $id): JsonResponse
+    public function showUser(int $id): Response
     {
         $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer];
@@ -64,7 +64,9 @@ class UserController extends AbstractController
 
         $data = $serializer->serialize($userShown, 'json');
 
-        return new JsonResponse($data, Response::HTTP_OK);
+        return new Response(
+            print_r($data)
+        );
         
     }
 
