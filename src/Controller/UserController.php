@@ -25,7 +25,7 @@ class UserController extends AbstractController
 
     
     /**
-     * @Route("/user/", name="add_user", methods={"POST"})
+     * @Route("/add/user/", name="add_user", methods={"POST"})
      */
     public function add(Request $request): JsonResponse
     {
@@ -50,7 +50,7 @@ class UserController extends AbstractController
     }   
 
     /**
-     * @Route("/show/{id}", name="show_user", methods={"GET"})
+     * @Route("/show/user/{id}", name="show_user", methods={"GET"})
      */
     public function showUser(int $id): Response
     {
@@ -71,7 +71,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/update/{id}", name="modify_user", methods={"PUT"})
+     * @Route("/update/user/{id}", name="modify_user", methods={"PUT"})
      */
     public function update(int $id, Request $request): Response
     {
@@ -89,5 +89,17 @@ class UserController extends AbstractController
 
     }
 
+       /**
+     * @Route("/delete/user/{id}", name="modify_user", methods={"DELETE"})
+     */
+    public function delete($id){
 
+        $user = $this->UserRepository->findOneBy(['id' => $id]);
+
+        $this->UserRepository->deleteUser($user);
+
+        return new JsonResponse([ 'status' => 'deleted!'], Response::HTTP_OK);
+
+    }
+    
 }
