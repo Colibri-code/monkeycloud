@@ -70,5 +70,24 @@ class UserController extends AbstractController
         
     }
 
+    /**
+     * @Route("/user/update/{id}", name="modify_user", methods={"PUT"})
+     */
+    public function update(int $id, Request $request): Response
+    {
+        $user = $this->UserRepository->findOneBy(['id' => $id]);
+        $data = json_decode($request->getContent(), true);
+        
+        empty($data['email']) ? true : $user->setEmail($data['email']);
+        empty($data['password']) ? true : $user->setPassword($data['password']);
+        empty($data['FullName']) ? true : $user->setFullName($data['FullName']);
+        empty($data['UserName']) ? true : $user->setUserName($data['UserName']);
+
+        $updatedUser = $this->UserRepository->updateUser($user);
+
+        return new JsonResponse(["status" => "updated"], Response::HTTP_OK);
+
+    }
+
 
 }
