@@ -6,7 +6,6 @@ use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityManager;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -27,15 +26,15 @@ class UserRepository extends ServiceEntityRepository
     // Handles the sign in of a new user in the application
     public function newUser($email, $password, $FullName, $UserName, $IsVisible){
 
-        $newSignin = new User();
+        $newSignIn = new User();
 
-        $newSignin
+        $newSignIn
             ->setEmail($email)
             ->setPassword($password)
             ->setFullName($FullName)
             ->setUserName($UserName)
             ->setIsVisible($IsVisible);
-        $this->manager->persist($newSignin);
+        $this->manager->persist($newSignIn);
         $this->manager->flush();
     
     

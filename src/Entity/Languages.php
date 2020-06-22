@@ -53,7 +53,7 @@ class Languages
     {
         $this->UserLanguage = $UserLanguage;
 
-        return $this->id;
+        return $this;
     }
 
 }

@@ -55,7 +55,7 @@ class UserController extends AbstractController
     public function showUser(int $id): Response
     {
         $encoders = [new JsonEncoder()];
-        $normalizers = [new ObjectNormalizer];
+        $normalizers = [new ObjectNormalizer()];
 
         $userShown = $this->UserRepository->findOneBy(['id' => $id]);
 
@@ -90,7 +90,7 @@ class UserController extends AbstractController
     }
 
        /**
-     * @Route("/delete/user/{id}", name="modify_user", methods={"DELETE"})
+     * @Route("/delete/user/{id}", name="delete_user", methods={"DELETE"})
      */
     public function delete($id){
 

@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Company;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 /**
  * @method Company|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,37 +16,44 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CompanyRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $manager;
+
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
         parent::__construct($registry, Company::class);
+        $this->manager = $manager;
     }
 
-    // /**
-    //  * @return Company[] Returns an array of Company objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Company
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    public function newCompany($CompName, $Departmens, $Teams){
+
+        $newCompany = new Company();
+
+        $newCompany
+            ->setCompName($CompName)
+            ->setDepartments($Departmens)
+            ->setTeams($Teams);
+
+        $this->manager->persist($newCompany);
+        $this->manager->flush();
+    
     }
-    */
+
+    public function updateCompany(Company $Company)
+    {
+        $this->manager->persist($Company);
+        $this->manager->flush();
+    }
+
+    public function deleteCompany(Company $Company)
+    {
+        $this->manager->remove($Company);
+        $this->manager->flush();
+    }
+
+
+
+
+
+
 }

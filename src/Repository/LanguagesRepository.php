@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Languages;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 /**
  * @method Languages|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,37 +16,22 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class LanguagesRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $manager;
+
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
         parent::__construct($registry, Languages::class);
+        $this->manager = $manager;
     }
 
-    // /**
-    //  * @return Languages[] Returns an array of Languages objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Languages
-    {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    public function newLanguage($language){
+
+        $newLanguage = new Languages();
+        $newLanguage->setLanguage($language);
+        $this->manager->persist($newLanguage);
+        $this->manager->flush();
+
     }
-    */
+
 }
