@@ -6,16 +6,16 @@ const Languages = function(argument)
 }
 
 Languages.create = (newLanguage, result) => {
-    sql.query('INSERT INTO `monkeysclouddb`.`languages` SET ?', newLanguage, (err, res) => {
+     sql.query('INSERT INTO `monkeysclouddb`.`languages` SET ?', newLanguage, (err, res) => {
         if(err) {
             console.log('error', err);
             result(err, null);
             return;
-        }
-
-    console.log('created language: ', {
-        id: res.insertId, newLanguage });
-    result(null, res.insertId, newLanguage);
+        } else {
+            sql.connect();
+            console.log('created language: ', res.insertId, newLanguage );
+            result(null, res.insertId.toString(), newLanguage.language);
+            sql.end();}
     });
 };
 

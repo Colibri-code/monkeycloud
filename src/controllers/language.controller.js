@@ -14,11 +14,11 @@ exports.create = (req, res) => {
 
     Languages.create(convertlanguage, (err, data) => {
         if(err)
-            res.status(500).send({
+            res.sendStatus(500).sendStatus({
                 message:
                     err.message || 'some error'
         });
-        else res.send(data);
+        else res.sendStatus(data);
     });
 
 };
