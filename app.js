@@ -7,7 +7,7 @@ const LanguagesRoutes = require('./src/routes/languages.routes.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/create/language', LanguagesRoutes);
+app.use('/table/language', LanguagesRoutes);
 
 app.get('/', (req, res) => {
     res.send('dev hell')

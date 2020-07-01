@@ -23,6 +23,18 @@ Languages.create = (newLanguage, result) => {
     
     };
 
+Languages.findById =  function(idlanguage, result) {
+    sql.query('SELECT * FROM `monkeysclouddb`.`languages` WHERE ?', idlanguage, (err, res) => {
+        if(err) {
+            console.log('error:', err);
+            result(err, null);
+            return;
+        }else{
+           console.log(null, res);
+             return result(res[0]);
+        }
+    });
+};
 
 
 module.exports = Languages;

@@ -1,6 +1,7 @@
 'use strict';
 
 const Languages = require('../models/languages.js');
+const { json } = require('body-parser');
 
 exports.create = function(req, res) {
 
@@ -18,3 +19,12 @@ exports.create = function(req, res) {
     }
 
 };
+
+exports.findById = function(req, res){
+    Languages.findById(req.params.idlanguage, function (err, language) {
+        if(err){
+             res.send(err);
+        }
+          res.json(language);
+    });
+}
