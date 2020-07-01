@@ -20,3 +20,14 @@ exports.create = function(req, res) {
     }
 
 };
+
+
+exports.findById = function(req, res){
+    Roles.findById(req.params.idrol, function (err, rol) {
+        if(err){
+             res.send(err);
+        }else{
+          res.json(rol);
+        }
+    });
+};

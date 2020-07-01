@@ -7,5 +7,7 @@ const router = express.Router();
 
 router.post('/', RolesRoute.create);
 
+router.get('/:idrol', RolesRoute.findById);
+
 module.exports = router;
     

@@ -23,8 +23,9 @@ exports.findById = function(req, res){
     Languages.findById(req.params.idlanguage, function (err, language) {
         if(err){
              res.send(err);
-        }
+        }else{
           res.json(language);
+        }
     });
 };
 
