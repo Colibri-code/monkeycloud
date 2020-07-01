@@ -2,7 +2,6 @@
 
 const express = require('express');
 const LanguageRoute = require('../controllers/language.controller.js');
-const Languages = require('../models/languages.js');
 
 const router = express.Router();
 

@@ -1,8 +1,6 @@
 'use strict';
 
 const Languages = require('../models/languages.js');
-const { json } = require('body-parser');
-const e = require('express');
 
 exports.create = function(req, res) {
 
