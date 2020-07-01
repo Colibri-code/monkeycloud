@@ -39,7 +39,7 @@ exports.update = function(req, res) {
             if(err){
                 res.send(err);
                 return;
-            }else{
+            }else {
 
                 res.json({ errror:false, message: 'language updated!', data: updatedlanguage});
                 return;
@@ -47,3 +47,13 @@ exports.update = function(req, res) {
             });        
     }
 };
+
+exports.delete = function(req, res) {
+    Languages.deleteLanguage(req.params.idlanguage, function(err, language){
+        if(err){
+            res.send(err);
+        } else {
+            res.json({ error:false, message: 'Language deleted'});
+        }
+    });  
+}

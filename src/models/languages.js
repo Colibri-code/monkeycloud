@@ -38,7 +38,6 @@ Languages.findById =  function(idlanguage, result) {
 };
 
 Languages.update = function(idlanguage ,updatelanguage, result){
-    console.log(updatelanguage);
     sql.query('UPDATE `monkeysclouddb`.`languages` SET `monkeysclouddb`.`languages`.`language`=?   WHERE `monkeysclouddb`.`languages`.`idlanguage` = ?', [updatelanguage.language, idlanguage], (err, res) => {
         if(err){
             console.log('error: ', err);
@@ -49,6 +48,21 @@ Languages.update = function(idlanguage ,updatelanguage, result){
             result(null, res);
             return;
         }
+    });
+
+}
+
+Languages.deleteLanguage = function(idlanguage, result){
+    sql.query('DELETE FROM `monkeysclouddb`.`languages` WHERE `idlanguage` = ?', [idlanguage], (err, res) => {
+        if(err){
+            console.log('error: ', err);
+            result(null, err);
+            return;
+        } else {
+            result(null, res);
+            return;
+        }
+
     });
 
 }
