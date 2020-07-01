@@ -27,14 +27,30 @@ Languages.findById =  function(idlanguage, result) {
     sql.query('SELECT * FROM `monkeysclouddb`.`languages` WHERE ?', idlanguage, (err, res) => {
         if(err) {
             console.log('error:', err);
-            result(err, null);
+            result(null, res);
             return;
         }else{
            console.log(null, res);
-             return result(res[0]);
+             result(res[0]);
+            return;
         }
     });
 };
 
+Languages.update = function(idlanguage ,updatelanguage, result){
+    console.log(updatelanguage);
+    sql.query('UPDATE `monkeysclouddb`.`languages` SET `monkeysclouddb`.`languages`.`language`=?   WHERE `monkeysclouddb`.`languages`.`idlanguage` = ?', [updatelanguage.language, idlanguage], (err, res) => {
+        if(err){
+            console.log('error: ', err);
+            result(null, err);
+            return;
+        } else {
+            console.log('language :', res);
+            result(null, res);
+            return;
+        }
+    });
+
+}
 
 module.exports = Languages;

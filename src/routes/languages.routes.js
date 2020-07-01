@@ -9,6 +9,7 @@ router.post('/', LanguageRoute.create);
 
 router.get('/:idlanguage', LanguageRoute.findById);
 
+router.put('/', LanguageRoute.update);
 
 module.exports = router;
     

@@ -2,6 +2,7 @@
 
 const Languages = require('../models/languages.js');
 const { json } = require('body-parser');
+const e = require('express');
 
 exports.create = function(req, res) {
 
@@ -27,4 +28,22 @@ exports.findById = function(req, res){
         }
           res.json(language);
     });
-}
+};
+
+
+exports.update = function(req, res) {
+    if(req.body.constructor === Object && Object.keys(req.body).length === 0){
+        return res.sendStatus(400).send({ error:true, message: 'Please provide all required field' });
+    } else {
+        Languages.update(req.body.idlanguage ,new Languages(req.body.language), function(err, updatedlanguage){
+            if(err){
+                res.send(err);
+                return;
+            }else{
+
+                res.json({ errror:false, message: 'language updated!', data: updatedlanguage});
+                return;
+            }
+            });        
+    }
+};
