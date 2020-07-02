@@ -34,7 +34,7 @@ exports.update = function(req, res) {
     if(req.body.constructor === Object && Object.keys(req.body).length === 0){
         return res.sendStatus(400).send({ error:true, message: 'Please provide all required field' });
     } else {
-        Languages.update(req.body.idlanguage ,new Languages(req.body.language), function(err, updatedlanguage){
+        Languages.update(req.body, function(err, updatedlanguage){
             if(err){
                 res.send(err);
                 return;
