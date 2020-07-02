@@ -34,5 +34,21 @@ sprints.findById = function(idsprint, result){
 }
 
 
+sprints.update = function(idsprint, result){
+    sql.query('UPDATE `monkeysclouddb`.`sprints` SET `monkeysclouddb`.`sprints`.`name`=?   WHERE `monkeysclouddb`.`sprints`.`idsprints` =?', [ idsprint.name, idsprint.idsprints], (err, res) => {
+        if(err){
+            console.log('error: ', err);
+            result(null, err);
+            return;
+        } else {
+            console.log('sprint :', res);
+            result(null, res);
+            return;
+        }
+    });
+
+}
+
+
 
 module.exports = sprints;

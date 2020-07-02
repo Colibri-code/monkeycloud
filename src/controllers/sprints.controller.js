@@ -32,3 +32,22 @@ exports.findById = function(req, res) {
     });
 
 }
+
+exports.update = function(req, res) {
+    if(req.body.constructor === Object && Object.keys(req.body).length === 0){
+        return res.sendStatus(400).send({ error:true, message: 'Please provide all required field' });
+    } else {
+        sprint.update(req.body, function(err, updatedsprint){
+            if(err){
+                res.send(err);
+                return;
+            } else {
+
+                res.json({ errror:false, message: 'sprint updated!', data: updatedsprint});
+                return;
+            }
+            });        
+    }
+};
+
+

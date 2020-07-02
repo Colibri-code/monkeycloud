@@ -9,4 +9,6 @@ router.post('/', SprintsRoute.create);
 
 router.get('/:idsprint', SprintsRoute.findById);
 
+router.put('/', SprintsRoute.update);
+
 module.exports = router;
