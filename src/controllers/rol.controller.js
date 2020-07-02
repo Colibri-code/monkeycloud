@@ -1,7 +1,7 @@
 
 'use strict';
 
-const Roles = require('../models/roles.js');
+const Roles = require('../models/rol.js');
 
 
 exports.create = function(req, res) {
@@ -30,4 +30,22 @@ exports.findById = function(req, res){
           res.json(rol);
         }
     });
+};
+
+exports.update = function(req, res) {
+    if(req.body.constructor === Object && Object.keys(req.body).length === 0){
+        return res.sendStatus(400).send({ error:true, message: 'Please provide all required field' });
+    } else {
+        console.log(req.body.rol);
+        Roles.update(req.body.idrol, new Roles(req.body.rol), function(err, updatedrol){
+            if(err){
+                res.send(err);
+                return;
+            }else {
+
+                res.json({ errror:false, message: 'rol updated!', data: updatedrol});
+                return;
+            }
+            });        
+    }
 };
