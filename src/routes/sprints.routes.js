@@ -7,4 +7,6 @@ const router = express.Router();
 
 router.post('/', SprintsRoute.create);
 
+router.get('/:idsprint', SprintsRoute.findById);
+
 module.exports = router;

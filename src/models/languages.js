@@ -53,7 +53,7 @@ Languages.update = function(idlanguage , result){
 
 }
 
-Languages.deleteLanguage = function(idlanguage, result){
+Languages.delete = function(idlanguage, result){
     sql.query('DELETE FROM `monkeysclouddb`.`languages` WHERE `idlanguage` = ?', [idlanguage], (err, res) => {
         if(err){
             console.log('error: ', err);

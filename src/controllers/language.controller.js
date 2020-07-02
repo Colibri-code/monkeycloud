@@ -48,7 +48,7 @@ exports.update = function(req, res) {
 };
 
 exports.delete = function(req, res) {
-    Languages.deleteLanguage(req.params.idlanguage, function(err){
+    Languages.delete(req.params.idlanguage, function(err){
         if(err){
             res.send(err);
         } else {

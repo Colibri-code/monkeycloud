@@ -20,4 +20,15 @@ exports.create = function(req, res) {
 };
 
 
+exports.findById = function(req, res) {
 
+    sprint.findById(req.params.idsprint, function(err, sprint) {
+        if(err){
+           return res.send(err);
+        }else{
+           return res.json(sprint);
+        }
+
+    });
+
+}
