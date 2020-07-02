@@ -8,8 +8,7 @@ const Company = function(argument) {
         this.departments = argument.departments;
     };
      
-Company.create= (newCompany, result) => {
-    console.log(newCompany)    
+Company.create = (newCompany, result) => {
     sql.query('INSERT INTO `monkeysclouddb`.`company` SET ?', newCompany, function(res, err) {
             if (err) {
                 console.log('error:', err);
