@@ -11,13 +11,13 @@ roles.create = (newRol, result) => {
         if(err){
             result(err, null);
         } else {
-            console.log(res.inserId);
-            result(null, res.inserId);
+            console.log(res.insertId);
+            result(null, res.insertId);
             return;
         }
     });
 
-}
+};
 
 roles.findById = (idrol, result) => {
     sql.query('SELECT * FROM `monkeysclouddb`.`roles` where `idrol` = ?', idrol, (err, res) => {
