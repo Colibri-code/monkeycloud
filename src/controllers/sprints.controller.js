@@ -50,4 +50,14 @@ exports.update = function(req, res) {
     }
 };
 
+exports.delete = function(req, res) {
+    sprint.delete(req.params.idrol, function(err){
+        if(err){
+            res.send(err);
+        } else {
+            res.json({ error:false, message: 'sprint deleted'});
+        }
+    });  
+};
+
 

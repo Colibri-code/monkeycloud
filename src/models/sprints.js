@@ -49,6 +49,23 @@ sprints.update = function(idsprint, result){
 
 }
 
+sprints.delete = function(idsprint, result){
+    sql.query('DELETE FROM `monkeysclouddb`.`languages` WHERE `idlanguage` = ?', [idsprint], (err, res) => {
+        if(err){
+            console.log('error: ', err);
+            result(null, err);
+            return;
+        } else {
+            result(null, res);
+            return;
+        }
+
+    });
+
+}
+
+
+
 
 
 module.exports = sprints;
