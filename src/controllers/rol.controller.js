@@ -37,7 +37,7 @@ exports.update = function(req, res) {
         return res.sendStatus(400).send({ error:true, message: 'Please provide all required field' });
     } else {
         console.log(req.body.rol);
-        Roles.update(req.body.idrol, new Roles(req.body.rol), function(err, updatedrol){
+        Roles.update(req.body, function(err, updatedrol){
             if(err){
                 res.send(err);
                 return;
@@ -48,4 +48,14 @@ exports.update = function(req, res) {
             }
             });        
     }
+};
+
+exports.delete = function(req, res) {
+    Roles.delete(req.params.idrol, function(err){
+        if(err){
+            res.send(err);
+        } else {
+            res.json({ error:false, message: 'rol deleted'});
+        }
+    });  
 };

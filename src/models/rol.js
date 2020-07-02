@@ -34,8 +34,8 @@ roles.findById = (idrol, result) => {
 }
 
 
-roles.update = function(idrol,updaterol, result){
-    sql.query('UPDATE `monkeysclouddb`.`roles` SET `monkeysclouddb`.`roles`.`rol`=?   WHERE `monkeysclouddb`.`roles`.`idrol` = ?', [updaterol.rol, idrol.idrol], (err, res) => {
+roles.update = function(idrol, result){
+    sql.query('UPDATE `monkeysclouddb`.`roles` SET `monkeysclouddb`.`roles`.`rol`= ?   WHERE `monkeysclouddb`.`roles`.`idrol` = ?', [idrol.rol, idrol.idrol], (err, res) => {
         if(err){
             console.log('error: ', err);
             result(null, err);
@@ -49,5 +49,16 @@ roles.update = function(idrol,updaterol, result){
 
 }
 
+roles.delete = function(idrol, result){
+    sql.query('DELETE FROM `monkeysclouddb`.`roles` WHERE `idrol` = ?', idrol, (res, err) => {
+        if(err){
+            result(null, err);
+            return; 
+        } else {
+            result(null, res);
+            return;
+        }
+    })
+}
 
 module.exports = roles;

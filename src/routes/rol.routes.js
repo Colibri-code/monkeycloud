@@ -10,5 +10,7 @@ router.get('/:idrol', RolesRoute.findById);
 
 router.put('/', RolesRoute.update);
 
+router.delete('/:idrol', RolesRoute.delete);
+
 module.exports = router;
     
