@@ -1,6 +1,6 @@
 'use strict';
 
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const dbConfig = require('./config/dbconfig.js');
 
 module.exports = mysql.createPool({
