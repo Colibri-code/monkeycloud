@@ -19,6 +19,53 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+  'post /user':  { action: 'create'}, 
+  'get /user/:id': { action: 'read'},
+  'patch /user/:id': {action: 'update'},
+  'delete /user/:id:': {action: 'destroy'},
+  'put /user/:id/taskscreated/:fk': {action: 'add'},
+  'get /user/:id/taskscreated':{action: 'populate'},
+  'delete /user/:id/taskscreated/:fk':{action: 'remove'},
+  'put /user/:id/workinfo/:fk': {action: 'add'},
+  'get /user/:id/workinfo':{action: 'populate'},
+  'delete /user/:id/taskstaken/:fk':{action: 'remove'},
+  'put /user/:id/taskstaken/:fk': {action: 'add'},
+  'get /user/:id/taskstaken':{action: 'populate'},
+  'delete /user/:id/taskstaken/:fk':{action: 'remove'},
+
+
+
+  'post /workinfo':  { action: 'create'}, 
+  'get /workinfo/:id': { action: 'read'},
+  'patch /workinfo/:id': {action: 'update'},
+  'delete /workinfo/:id': {action: 'destroy'},
+
+  'post /projects':  { action: 'create'}, 
+  'get /projects/:id': { action: 'read'},
+  'patch /projects/:id': {action: 'update'},
+  'delete /projects/:id:': {action: 'destroy'},
+
+  'post /tasks':  { action: 'create'}, 
+  'get /tasks/:id': { action: 'read'},
+  'patch /tasks/:id': {action: 'update'},
+  'delete /tasks/:id': {action: 'destroy'},
+
+  'post /sprints':  { action: 'create'}, 
+  'get /sprints/:id': { action: 'read'},
+  'patch /sprints/:id': {action: 'update'},
+  'delete /sprints/:id': {action: 'destroy'},
+
+  'post /languages':  { action: 'create'}, 
+  'get /languages/:id': { action: 'read'},
+  'patch /languages/:id': {action: 'update'},
+  'delete /languages/:i:': {action: 'destroy'},
+
+  'post /languages':  { action: 'create'}, 
+  'get /languages/:id': { action: 'read'},
+  'patch /languages/:id': {action: 'update'},
+  'delete /languages/:id': {action: 'destroy'},
+
+
   '/': { view: 'pages/homepage' },
 
 

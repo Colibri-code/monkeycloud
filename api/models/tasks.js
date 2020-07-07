@@ -35,7 +35,6 @@ module.exports = {
         }, 
         takenby:{
             collection: 'user',
-            via: 'workingon'
         } 
         
     }

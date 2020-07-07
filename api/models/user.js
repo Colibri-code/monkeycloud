@@ -1,7 +1,8 @@
+
 module.exports = {
     attributes: {
         id: {
-            type: 'number', required: true, columnName: 'iduser', autoIncrement: true, unique: true, columnType: 'int'
+            type: 'number', columnName: 'iduser', autoIncrement: true, unique: true, columnType: 'int'
         },
         username:{
             type: 'string', required: false, columnName: 'username', columnType: 'varchar(20)'
@@ -41,5 +42,6 @@ module.exports = {
             collection: 'tasks',
             via: 'takenby'
         }
+
     }
 }
