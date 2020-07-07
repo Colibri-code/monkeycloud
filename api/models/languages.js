@@ -1,11 +1,11 @@
 module.exports = {
     attributes: {
         id: {
-            type: 'number', required: true, columnName: 'idlanguage', autoIncrement: true, columnType: 'int'
+            type: 'number', columnName: 'idlanguage', columnType: 'int', required: false, autoIncrement: true, unique: true
         },
         language: {
 
-            type: 'string', required: true, columnType: 'varchar(20)'
+            type: 'string', required: false, columnType: 'varchar(20)'
         }
     }
 }

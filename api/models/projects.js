@@ -1,8 +1,7 @@
 module.exports = {
     attributes: {
         id: {
-            type: 'number', columnType:'int', columnName: 'idproject', unique: true, required: true
-        },
+            type: 'number', columnName: 'idproject', columnType: 'int', required: false, autoIncrement: true, unique: true        },
         name: {
             type: 'string', columnName: 'name', columnType:'varchar(20)', required: false
         },

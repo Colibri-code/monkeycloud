@@ -1,5 +1,8 @@
 module.exports = {
     attributes: {
+        id: {
+            type: 'number', columnName: 'idworkinfo', columnType: 'int', required: false, autoIncrement: true, unique: true
+        },
         name: {
             type: 'string', columnType: 'varchar(20)', required: false, columnName: 'name'
         },
@@ -11,7 +14,6 @@ module.exports = {
         },
         user: {
             model: 'user',
-            unique: true
-        }
+        },
     }
 }

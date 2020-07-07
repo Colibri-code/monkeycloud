@@ -1,10 +1,10 @@
 module.exports = {
     attributes:{
         id: {
-            type: 'number', required: true, columnName: 'idcompany', unique: true, columnType: 'int'
+            type: 'number', columnName: 'idcompany', columnType: 'int', required: false, autoIncrement: true, unique: true
         },
         name: {
-            type: 'string', columnName: 'name', columnType: 'varchar(20)',
+            type: 'string', columnName: 'name', columnType: 'varchar(20)', required: false
         },
         teams: {
             type: 'json', columnName: 'teams', defaultsTo: null, columnType:'JSON'

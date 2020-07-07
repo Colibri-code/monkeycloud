@@ -1,8 +1,7 @@
 module.exports = {
     attributes: {
         id: {
-            type: 'number', required: true, columnName: 'idtask', columnType: 'int'
-        },
+            type: 'number', columnName: 'idtask', columnType: 'int', required: false, autoIncrement: true, unique: true        },
         name: {
             type: 'string', required: false, columnName: 'name', columnType: 'varchar(20)'
         },
@@ -31,10 +30,10 @@ module.exports = {
             model:'tasks', required: false
         }, 
         createdby:{
-            model: 'user', unique: true
+            model: 'user', unique: true,
         }, 
         takenby:{
-            collection: 'user',
+            collection: 'user', required: false
         } 
         
     }

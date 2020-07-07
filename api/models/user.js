@@ -2,7 +2,7 @@
 module.exports = {
     attributes: {
         id: {
-            type: 'number', columnName: 'iduser', autoIncrement: true, unique: true, columnType: 'int'
+            type: 'number', columnName: 'iduser', columnType: 'int', required: false, autoIncrement: true, unique: true        
         },
         username:{
             type: 'string', required: false, columnName: 'username', columnType: 'varchar(20)'
