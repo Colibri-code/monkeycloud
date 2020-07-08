@@ -2,6 +2,13 @@
 
 a [Sails v1](https://sailsjs.com) application
 
+# database model explanation
+The model of the database for this application is the following, the user table has a relationship with a unique work info which sets out the work info of a particular user, to build or modify info from this table you need to look at values of the specific company table which u can either find by id in company table. 
+Once this is setup you can setup projects from the company table this is done in order to organize projects as belonging to a particular company, from projects you can set out sprints which relate to those projects and from those sprints tasks which relate to that specific sprint. In those sprints you will find an attribute with the name collections, this are the specific instances that waterline object relational mapper uses to place out the relationships in the database check https://sailsjs.com/documentation/concepts/models-and-orm/associations  for more details, tasks has 3 collections that handle 3 different records user that takes a task, user that makes a task and tasks related to the current task. If one task has value null in tasks related this means this task is the final task in the line, task don’t need to have just one user assigned they could have multiple users assigned.
+It is recommended to see the link shown above to get a clear understanding of how relationships work in the waterline ORM and how to implement future tables in the future.
+
+
+
 
 ### Links
 
