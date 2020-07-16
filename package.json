@@ -1,0 +1,18 @@
+{
+  "name": "git-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "promise": "^8.1.0",
+    "simple-git": "^2.12.0"
+  }
+}
