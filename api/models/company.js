@@ -12,7 +12,8 @@ module.exports = {
             type: 'string',
             columnName: 'name',
             columnType: 'varchar(20)',
-            required: false
+            required: true,
+            unique: true
         },
         teams: {
             type: 'json',
@@ -33,7 +34,8 @@ module.exports = {
         tokens: {
             type: 'string',
             columnName: 'tokens',
-            columnType: 'varchar(100)'
+            columnType: 'varchar(100)',
+            required: false
         }
     }
 };

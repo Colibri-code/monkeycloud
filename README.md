@@ -1,26 +1,25 @@
 # monkeycloud
 
-a [Sails v1](https://sailsjs.com) application
+Agile board workflow with git integration.
 
+## setup
 
-### Links
+Check datastores and change the adapter options to your current setup (specifically the settings corresponding to your database setup),
+dont forget that the datbase thats referenced on datastores must be created before you initiate the app so it is recommended to do this
+in a mysql shell.
 
-+ [Sails framework documentation](https://sailsjs.com/get-started)
-+ [Version notes / upgrading](https://sailsjs.com/documentation/upgrading)
-+ [Deployment tips](https://sailsjs.com/documentation/concepts/deployment)
-+ [Community support options](https://sailsjs.com/support)
-+ [Professional / enterprise options](https://sailsjs.com/enterprise)
+After this is done run npm install, and then run npm run start.
 
+## how does the api work
+Check the files in models to find out how the database is setup if you want to see how the input to the endpoints is handled look
+controllers folder, both of this folders are located inside the api folder.
 
-### Version info
+to check the end points of the specific controller check the corresponding action on the routes file found on the config folder
+in the root folder of the app.
 
-This app was originally generated on Wed Jul 29 2020 22:59:40 GMT-0600 (GMT-06:00) using Sails v1.2.4.
-
-<!-- Internally, Sails used [`sails-generate@1.17.2`](https://github.com/balderdashy/sails-generate/tree/v1.17.2/lib/core-generators/new). -->
-
-
-
-<!--
-Note:  Generators are usually run using the globally-installed `sails` CLI (command-line interface).  This CLI version is _environment-specific_ rather than app-specific, thus over time, as a project's dependencies are upgraded or the project is worked on by different developers on different computers using different versions of Node.js, the Sails dependency in its package.json file may differ from the globally-installed Sails CLI release it was originally generated with.  (Be sure to always check out the relevant [upgrading guides](https://sailsjs.com/upgrading) before upgrading the version of Sails used by your app.  If you're stuck, [get help here](https://sailsjs.com/support).)
--->
+## links
+Here are some links that might be helpful
+https://sailsjs.com/documentation/concepts/actions-and-controllers
+https://sailsjs.com/documentation/concepts/models-and-orm/attributes
+https://sailsjs.com/documentation/concepts/models-and-orm/associations
 
