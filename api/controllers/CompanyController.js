@@ -27,8 +27,8 @@ module.exports = {
         if (req.body.id == undefined || Object.keys(req.body) == null) {
             return res.send('invalid input');
         } else {
-            const companyUpated = await company.update(req.body.id).set(req.body).fetch();
-            return res.json(companyUpated);
+            const companyUpdated = await company.update(req.body.id).set(req.body).fetch();
+            return res.json(companyUpdated);
         }
     },
     delete: async function(req, res) {

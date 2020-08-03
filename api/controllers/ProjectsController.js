@@ -27,8 +27,8 @@ module.exports = {
         if (Object.keys(req.body) == 0 || req.body.id == undefined) {
             return res.send('invalid input');
         } else {
-            const projectUpated = await projects.update(req.body.id).set(req.body).fetch();
-            return res.json(projectUpated);
+            const projectUpdated = await projects.update(req.body.id).set(req.body).fetch();
+            return res.json(projectUpdated);
         }
     },
     delete: async function(req, res) {
