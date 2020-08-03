@@ -1,8 +1,12 @@
 # monkeycloud
 
-Agile board workflow with git integration.
+Task Manager and Git Workflow
 
 ## setup
+
+Install locally MySql https://dev.mysql.com/downloads/mysql/
+
+Install node: https://nodejs.org/en/download/
 
 Check datastores and change the adapter options to your current setup (specifically the settings corresponding to your database setup),
 dont forget that the datbase thats referenced on datastores must be created before you initiate the app so it is recommended to do this
