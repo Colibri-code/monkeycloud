@@ -1,20 +1,39 @@
 module.exports = {
-    attributes:{
+    attributes: {
         id: {
-            type: 'number', columnName: 'idcompany', columnType: 'int', required: false, autoIncrement: true, unique: true
+            type: 'number',
+            columnName: 'idcompany',
+            columnType: 'int',
+            required: false,
+            autoIncrement: true,
+            unique: true
         },
         name: {
-            type: 'string', columnName: 'name', columnType: 'varchar(20)', required: false
+            type: 'string',
+            columnName: 'name',
+            columnType: 'varchar(20)',
+            required: false
         },
         teams: {
-            type: 'json', columnName: 'teams', defaultsTo: null, columnType:'JSON'
+            type: 'json',
+            columnName: 'teams',
+            defaultsTo: null,
+            columnType: 'JSON'
         },
         departments: {
-            type: 'json', columnName: 'departments', defaultsTo: null, columnType:'JSON'
+            type: 'json',
+            columnName: 'departments',
+            defaultsTo: null,
+            columnType: 'JSON'
         },
         projects: {
             collection: 'projects',
             via: 'company',
+        },
+        tokens: {
+            type: 'string',
+            columnName: 'tokens',
+            columnType: 'varchar(100)'
         }
     }
 };
