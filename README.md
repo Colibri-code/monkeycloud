@@ -23,3 +23,5 @@ https://sailsjs.com/documentation/concepts/actions-and-controllers
 https://sailsjs.com/documentation/concepts/models-and-orm/attributes
 https://sailsjs.com/documentation/concepts/models-and-orm/associations
 
+## to do
+Access control this is handled through policies file inside the config folder. 
