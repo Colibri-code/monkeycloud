@@ -8,6 +8,8 @@ Install locally MySql https://dev.mysql.com/downloads/mysql/
 
 Install node: https://nodejs.org/en/download/
 
+Setup a database with the name you desire either through a shell or in mysql workbench.
+
 inside of /config/datastores.js change url to your current settings.
 
 After this is done run npm install, and then run npm run start.
