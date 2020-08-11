@@ -8,9 +8,7 @@ Install locally MySql https://dev.mysql.com/downloads/mysql/
 
 Install node: https://nodejs.org/en/download/
 
-Check datastores and change the adapter options to your current setup (specifically the settings corresponding to your database setup),
-dont forget that the datbase thats referenced on datastores must be created before you initiate the app so it is recommended to do this
-in a mysql shell.
+inside of /config/datastores.js change url to your current settings.
 
 After this is done run npm install, and then run npm run start.
 
@@ -26,6 +24,9 @@ Here are some links that might be helpful
 https://sailsjs.com/documentation/concepts/actions-and-controllers
 https://sailsjs.com/documentation/concepts/models-and-orm/attributes
 https://sailsjs.com/documentation/concepts/models-and-orm/associations
+
+if you encounter the client does not support authentication error check this link 
+https://stackoverflow.com/questions/50093144/mysql-8-0-client-does-not-support-authentication-protocol-requested-by-server
 
 ## to do
 Access control this is handled through policies file inside the config folder. 
