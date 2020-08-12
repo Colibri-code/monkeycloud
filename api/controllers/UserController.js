@@ -5,42 +5,54 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-
-
 module.exports = {
-
-    create: async function(req, res) {
-        if (req.body == null) {
-            return res.send('null body')
-        } else {
-            const userCreated = await user.create(req.body).fetch();
-            return res.json(userCreated);
-        }
-    },
-    read: async function(req, res) {
-        if (req.params.id != undefined) {
-            const readUser = await user.findOne(req.params.id);
-            return res.json(readUser);
-        } else {
-            return res.send('invalid input');
-        }
-    },
-    update: async function(req, res) {
-        if (req.body == null || req.body.id == undefined || Object.keys(req.body) < 2) {
-            return res.send('invalid input');
-        } else {
-            const userUpdated = await user.update(req.body.id).set(req.body).fetch();
-            return res.json(userUpdated);
-        }
-    },
-    delete: async function(req, res) {
-        if (req.params.id != undefined) {
-            const deletedUser = await user.destroyOne(req.params.id);
-            return res.json(deletedUser);
-        } else {
-            return res.send('invalid input');
-        }
+  create: async function (req, res) {
+    try {
+      const user = await User.create(req.body).fetch();
+      const token = await sails.helpers.generateAuthToken(user.id);
+      res.send({ user, token });
+    } catch (error) {
+      res.status(400).send();
     }
+  },
 
+  login: async function (req, res) {
+    try {
+      const user = await User.findByCredentials(
+        req.body.email,
+        req.body.password
+      );
+      const token = await sails.helpers.generateAuthToken(user.id);
+      res.send({ user, token });
+    } catch (error) {
+      res.status(400).send();
+    }
+  },
 
-}
+  read: async function (req, res) {
+    try {
+      const user = await User.findOne(req.params.id);
+      if (!user) return res.status(404).send();
+    } catch (error) {
+      res.status(400).send();
+    }
+  },
+  
+  update: async function (req, res) {
+    try {
+      const user = await User.update(req.user.id).set(req.body).fetch();
+      res.send({ user });
+    } catch (error) {
+      res.badRequest();
+    }
+  },
+  
+  delete: async function (req, res) {
+    try {
+      await User.destroyOne(req.user.id);
+      res.send();
+    } catch (error) {
+      res.badRequest();
+    }
+  },
+};

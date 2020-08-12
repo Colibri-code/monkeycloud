@@ -7,6 +7,7 @@
     "dependencies": {
         "@sailshq/lodash": "^3.10.3",
         "express-mysql-session": "^2.1.4",
+        "jsonwebtoken": "^8.5.1",
         "nodemon": "^2.0.4",
         "sails": "^1.2.4",
         "sails-hook-orm": "^2.1.1",
