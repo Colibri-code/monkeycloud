@@ -6,7 +6,9 @@
     "keywords": [],
     "dependencies": {
         "@sailshq/lodash": "^3.10.3",
+        "crypto-random-string": "^3.2.0",
         "express-mysql-session": "^2.1.4",
+        "nodemailer": "^6.4.11",
         "nodemon": "^2.0.4",
         "sails": "^1.2.4",
         "sails-hook-orm": "^2.1.1",
