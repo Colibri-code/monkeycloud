@@ -5,8 +5,6 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-
-
 module.exports = {
 
     create: async function(req, res) {
@@ -40,7 +38,14 @@ module.exports = {
         } else {
             return res.send('invalid input');
         }
-    }
-
+    },
+    findByEmail: async function(req, res) {
+        if (req.body == null || req.body.email == undefined) {
+            return res.send('invalid input');
+        } else {
+            const readUser = await user.findOne({email: req.body.email});
+            return res.json(readUser);
+        }
+    },
 
 }

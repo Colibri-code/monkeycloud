@@ -41,6 +41,10 @@ module.exports = {
         workingon: {
             collection: 'tasks',
             via: 'takenby'
+        },
+        recoverycode:{
+            collection: 'recoverycode',
+            via:'idUser'
         }
 
     }

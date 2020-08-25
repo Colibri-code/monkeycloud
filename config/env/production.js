@@ -392,6 +392,14 @@ module.exports = {
 
   },
 
+  emailConfiguration:{
+    host: "smtp.ethereal.email",
+    port: 587,
+    secure: false,
+    user: 'cokipnw4awetc2jr@ethereal.email', // generated ethereal user
+    pass: '5YFXqk2DF6N8seAcPj'
+  }
+
 
 
 };
