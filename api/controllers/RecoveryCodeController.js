@@ -87,14 +87,12 @@ module.exports = {
                                                                 html:`<b>Recuperar Contrasena </b>${pin}`});
                 if(result === 'Success'){
                     return res.send("The message has been sent");
-                }else
+                }else{
                     return res.send('Error sending email');
                 }                                                   
             }else{
                 return res.send('The user does not exist');
-            }            
-            
-            
+            }                        
         }
     },
 
