@@ -49,8 +49,7 @@ module.exports.datastores = {
          *                                                                          *
          ***************************************************************************/
         adapter: 'sails-mysql',
-        url: 'mysql://root:asdf@localhost:3306/monkeycloud',
-
+        url: 'mysql://josue:12345678@localhost:3306/monkeycloud',
     },
 
 

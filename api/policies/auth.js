@@ -1,12 +1,11 @@
-const jwt = require('jsonwebtoken');
-const secretKey =  'THIS_IS_SECRET'
+const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res, next) => {
   try {
-    const token = req.header('Authorization');
-    const decoded = jwt.verify(token, secretKey);
+    const token = req.header("Authorization");
+    const decoded = jwt.verify(token, sails.config.session.secret);
     const user = await User.findOne(decoded.id);
-    req.user = user;
+    req.user = user.id;
     return next();
   } catch (error) {
     res.forbidden();
