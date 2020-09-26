@@ -2,6 +2,11 @@
 
 Task Manager and Git Workflow
 
+## Docker Local Buils
+Need to install docker and docker compose [Installation Guide](https://docs.docker.com/compose/install/)
+
+ * Build container image: `docker-compose up -d`
+
 ## setup
 
 Install locally MySql https://dev.mysql.com/downloads/mysql/
