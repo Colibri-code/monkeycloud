@@ -21,5 +21,6 @@ module.exports.policies = {
     //'*': 'isLoggedIn',
     login: true,
     create: true,
+    googleLogin: true,
   },
 };

@@ -13,6 +13,7 @@ module.exports.routes = {
 
     'POST /user/create': 'UserController.create',
     'POST /user/login': 'UserController.login',
+    'POST /user/googlelogin': 'UserController.googleLogin',
     'GET /user/read/:id': 'UserController.read',
     'PATCH /user/update': 'UserController.update',
     'DELETE /user/delete': 'UserController.delete',

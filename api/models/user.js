@@ -53,7 +53,6 @@ module.exports = {
     password: {
       type: "string",
       columnName: "password",
-      required: true,
       columnType: "varchar(200)",
       encrypt: true,
     },

@@ -49,4 +49,5 @@ module.exports.globals = {
 
     sails: true,
 
+    googleClient:"614969697632-v109s8e1a45j3j4qnrsksdd2fkeurn7r.apps.googleusercontent.com"
 };
