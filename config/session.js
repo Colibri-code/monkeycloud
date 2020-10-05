@@ -22,14 +22,15 @@ module.exports.session = {
     adapter: 'express-mysql-session',
     host: 'localhost',
     port: 3306,
-    user: 'root',
-    password: 'asdf',
+    user: 'josue',
+    password: '12345678',
     database: 'monkeycloud',
     ssl: false,
     stringify: true,
     cookie: {
         maxAge: 24 * 60 * 60 * 1000
     },
+    
 
     /***************************************************************************
      *                                                                          *

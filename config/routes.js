@@ -12,11 +12,12 @@
 module.exports.routes = {
 
     'POST /user/create': 'UserController.create',
+    'POST /user/login': 'UserController.login',
+    'POST /user/googlelogin': 'UserController.googleLogin',
     'GET /user/read/:id': 'UserController.read',
     'PATCH /user/update': 'UserController.update',
-    'DELETE /user/delete/:id': 'UserController.delete',    
-    'POST /user/findByEmail/': 'UserController.findByEmail',
-    
+    'DELETE /user/delete': 'UserController.delete',
+
 
     'POST /languages/create': 'LanguagesController.create',
     'GET /languages/read': 'LanguagesController.read',
@@ -53,11 +54,5 @@ module.exports.routes = {
     'PATCH /tasks/update': 'TasksController.update',
     'DELETE /tasks/delete/:id': 'TasksController.delete',
 
-    'POST /code/create': 'RecoveryCodeController.create',
-    'GET /code/read/:id': 'RecoveryCodeController.read',
-    'PATCH /code/update': 'RecoveryCodeController.update',
-    'DELETE /code/delete/:id': 'RecoveryCodeController.delete',
-    'POST /code/verifyCode/': 'RecoveryCodeController.verifyCode',
-    'POST /code/sendCode/': 'RecoveryCodeController.sendCode',
 
 };

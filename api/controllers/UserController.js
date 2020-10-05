@@ -5,47 +5,72 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const {OAuth2Client} = require("google-auth-library")
+const client = new OAuth2Client(sails.config.globals.googleClient)
+
+
 module.exports = {
+  create: async function (req, res) {
+    try {
+      const user = await User.create(req.body).fetch();
+      const token = await sails.helpers.generateAuthToken(user.id);
+      res.send({ user, token });
+    } catch (error) {
+      res.badRequest();
+    }
+  },
 
-    create: async function(req, res) {
-        if (req.body == null) {
-            return res.send('null body')
-        } else {
-            const userCreated = await user.create(req.body).fetch();
-            return res.json(userCreated);
-        }
-    },
-    read: async function(req, res) {
-        if (req.params.id != undefined) {
-            const readUser = await user.findOne(req.params.id);
-            return res.json(readUser);
-        } else {
-            return res.send('invalid input');
-        }
-    },
-    update: async function(req, res) {
-        if (req.body == null || req.body.id == undefined || Object.keys(req.body) < 2) {
-            return res.send('invalid input');
-        } else {
-            const userUpdated = await user.update(req.body.id).set(req.body).fetch();
-            return res.json(userUpdated);
-        }
-    },
-    delete: async function(req, res) {
-        if (req.params.id != undefined) {
-            const deletedUser = await user.destroyOne(req.params.id);
-            return res.json(deletedUser);
-        } else {
-            return res.send('invalid input');
-        }
-    },
-    findByEmail: async function(req, res) {
-        if (req.body == null || req.body.email == undefined) {
-            return res.send('invalid input');
-        } else {
-            const readUser = await user.findOne({email: req.body.email});
-            return res.json(readUser);
-        }
-    },
+  login: async function (req, res) {
+    try {
+      const user = await User.findOne({ email: req.body.email }).decrypt();
+      if (!user) return res.notFound();
+      if (user.password !== req.body.password) return res.notFound();
+      const token = await sails.helpers.generateAuthToken(user.id);
+      res.send({ user, token });
+    } catch (error) {
+      res.badRequest();
+    }
+  },
 
-}
+  read: async function (req, res) {
+    if (req.params.id) {
+      const user = await User.findOne(req.params.id);
+      res.json(user);
+    } else {
+      res.notFound();
+    }
+  },
+
+  update: async function (req, res) {
+    try {
+      const user = await User.update(req.user).set(req.body).fetch();
+      res.send({ user });
+    } catch (error) {
+      res.badRequest();
+    }
+  },
+
+  delete: async function (req, res) {
+    try {
+      await User.destroyOne(req.user);
+      res.send();
+    } catch (error) {
+      res.badRequest();
+    }
+  },
+
+  googleLogin: async function(req,res) {
+    try {
+      const {payload:{email,name}} = await client.verifyIdToken({idToken:req.body.tokenId,audience:sails.config.globals.googleClient})
+      var user = await User.findOne({email})
+      if(!user) {
+        user = await User.create({email,fullname:name}).fetch();
+      }
+      const token = await sails.helpers.generateAuthToken(user.id);
+      res.send({user,token})
+    } catch (error) {
+      res.badRequest()
+    }
+  },
+
+};
