@@ -7,7 +7,7 @@
  * is only used in your production environment, i.e. when you lift your app using:
  *
  * ```
- * NODE_ENV=production node app
+ NODE_ENV=local node app
  * ```
  *
  * > If you're using git as a version control solution for your Sails app,
@@ -47,7 +47,8 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     default: {
-      // adapter: 'sails-mysql',
+      adapter: 'sails-mysql',
+      url: 'mysql://sails:sailsPowdj940@localhost:3306/mkcloud-sails'
       // url: 'mysql://user:password@host:port/database',
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
