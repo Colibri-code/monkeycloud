@@ -4,19 +4,19 @@
 
 You can change the urls to have latest versions and the appropriate files for your operating system
 
-### Download (from terminal)
+### Download (terminal)
 ```
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.2-darwin-x86_64.tar.gz
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.2-darwin-x86_64.tar.gz.sha512
 shasum -a 512 -c elasticsearch-7.9.2-darwin-x86_64.tar.gz.sha512
 tar -xzf elasticsearch-7.9.2-darwin-x86_64.tar.gz
 ```
-### Run elasticsearch (from terminal)
+### Run elasticsearch (terminal)
 ```
 cd elasticsearch-7.9.2
 bin/elasticsearch
 ```
-### Check elasticsearch (from terminal)
+### Check elasticsearch (terminal)
 ```
 curl http://localhost:9200
 
@@ -37,5 +37,24 @@ curl http://localhost:9200
   },
   "tagline" : "You Know, for Search"
 }
-
 ```
+# Kibana
+## Installation
+*Site:* https://www.elastic.co/es/downloads/kibana
+
+You can change the urls to have latest versions and the appropriate files for your operating system
+
+### Download kibana (terminal)
+```
+wget https://artifacts.elastic.co/downloads/kibana/kibana-7.9.2-darwin-x86_64.tar.gz
+wget https://artifacts.elastic.co/downloads/kibana/kibana-7.9.2-darwin-x86_64.tar.gz.sha512
+shasum -a 512 -c kibana-7.9.2-darwin-x86_64.tar.gz.sha512
+tar -xzf kibana-7.9.2-darwin-x86_64.tar.gz
+```
+### Run kibana (terminal)
+```
+cd kibana-7.9.2-darwin-x86_64/
+bin/kibana
+```
+### Check kibana (web browser)
+http://localhost:5601/
