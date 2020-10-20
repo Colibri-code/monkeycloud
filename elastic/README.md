@@ -16,6 +16,8 @@
     - [How to create a cluster?](#how-to-create-a-cluster)
     - [How is the data organized and stored?](#how-is-the-data-organized-and-stored)
     - [Summary](#in-summary)
+- [Sharding and Scalability](#sharding-and-scalability)
+- [Replication](#replication)
 
 ## Elasticsearch
 ### Install Elasticsearch
@@ -121,3 +123,7 @@ A node refers to a running **Elasticsearch instance**, which can run on a physic
 Data is stored as **documents**, a document being a unit of information.
 A document can represent anything.
 Each document belongs to an **index**, which is a way of logically grouping related documents.
+
+## Sharding and Scalability
+
+## Replication
