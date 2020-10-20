@@ -1,22 +1,41 @@
-# Elasticsearch
-## Installation
+# ELASTICSEARCH
+## index of contents
+- [Elasaticsearch](#elasticsearch)
+    - [Installation](#install-elasticsearch)
+        - [Download (terminal)](#download-terminal-elasticsearch)
+        - [Run elasticsearch (terminal)](#run-elasticsearch-terminal)
+        - [Check elasticsearch (terminal)](#check-elasticsearch-terminal)
+- [Kibana](#kibana)
+    - [Installation](#install-kibana)
+    - [Download](#download-kibana-terminal)
+    - [Run (terminal)](#run-kibana-terminal)
+    - [Check (browser)](#check-kibana-web-browser)
+- [Basic Architecture](#basic-architecture)
+    - [Nodes](#nodes)
+    - [Data stored and distribution](#how-is-the-data-distributed-between-the-nodes-and-how-does-elasticsearch-know-where-some-data-is-stored)
+    - [How to create a cluster?](#how-to-create-a-cluster)
+    - [How is the data organized and stored?](#how-is-the-data-organized-and-stored)
+    - [Summary](#in-summary)
+
+## Elasticsearch
+### Install Elasticsearch
 *Site:* https://www.elastic.co/es/downloads/elasticsearch
 
 You can change the urls to have latest versions and the appropriate files for your operating system
 
-### Download (terminal)
+#### Download (terminal) Elasticsearch
 ```
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.2-darwin-x86_64.tar.gz
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.9.2-darwin-x86_64.tar.gz.sha512
 shasum -a 512 -c elasticsearch-7.9.2-darwin-x86_64.tar.gz.sha512
 tar -xzf elasticsearch-7.9.2-darwin-x86_64.tar.gz
 ```
-### Run elasticsearch (terminal)
+#### Run elasticsearch (terminal)
 ```
 cd elasticsearch-7.9.2
 bin/elasticsearch
 ```
-### Check elasticsearch (terminal)
+#### Check elasticsearch (terminal)
 ```
 curl http://localhost:9200
 
@@ -38,8 +57,8 @@ curl http://localhost:9200
   "tagline" : "You Know, for Search"
 }
 ```
-# Kibana
-## Installation
+## Kibana
+### Install Kibana
 *Site:* https://www.elastic.co/es/downloads/kibana
 
 You can change the urls to have latest versions and the appropriate files for your operating system
