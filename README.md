@@ -6,6 +6,11 @@ Task Manager and Git Workflow
 Need to install docker and docker compose [Installation Guide](https://docs.docker.com/compose/install/)
 
  * Build container image: `docker-compose up -d`
+ 
+ 
+ ## Error Bind for 0.0.0.0:8080 failed: port is already allocated
+ 
+ Fixed with https://github.com/docker/compose/issues/4950#issuecomment-398879461
 
 ## setup
 
