@@ -26,16 +26,17 @@ module.exports = {
             columnName: 'departments',
             defaultsTo: null,
             columnType: 'JSON'
-        },
-        projects: {
-            collection: 'projects',
-            via: 'company',
-        },
+        },        
         tokens: {
             type: 'string',
             columnName: 'tokens',
             columnType: 'varchar(100)',
             required: false
-        }
+        },
+        //New field, relationship one to one with the enviroment module
+        relatedProjects: { //one to many relationship
+            collection: 'projects',
+            via: 'company'
+        }        
     }
 };
