@@ -26,15 +26,20 @@ module.exports = {
             defaultsTo: null,
             required: false,
             columnType: 'JSON'
+        },        
+        sprints: {
+            collection: 'sprints',
+            via: 'project'
         },
+
+        //New fields
         company: {
             model: 'company',
             unique: true,
             required: true
         },
-        sprints: {
-            collection: 'sprints',
-            via: 'project'
-        },
+        enviromentsProject: {
+            collection: 'enviroments'
+        }
     }
 }
