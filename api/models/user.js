@@ -120,7 +120,15 @@ module.exports = {
         backupRelated: { // one to one relationship with backup model
             model: 'backup',
             unique: true
+        },
+        agency: { //one to many relationship
+            model: 'agency'
+        },
+        managedAgency: { //one to one relationship
+            collection: 'agency',
+            via: 'adminUser'
         }
+
         //-----------------End of New fields-------------------- 
     },
 

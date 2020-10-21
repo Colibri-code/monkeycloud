@@ -40,6 +40,9 @@ module.exports = {
         },
         enviromentsProject: {
             collection: 'enviroments'
+        },
+        agency: { //one to many relationship one agency can have multiple projects
+            model: 'agency'
         }
     }
 }
