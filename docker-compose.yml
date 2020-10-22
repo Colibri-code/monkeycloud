@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  
+
   sailsjs:
     build:
       dockerfile: Dockerfile
@@ -9,7 +9,7 @@ services:
     ports:
       - 8080:1337
     volumes:
-      - .:/usr/src/app          
+      - .:/usr/src/app
   mysqlsails:
     image: mysql
     environment:

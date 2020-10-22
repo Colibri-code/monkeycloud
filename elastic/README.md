@@ -201,3 +201,9 @@ A decent number for most of these cases would be five, but it depends on several
 ### Replication
 
 # Index
+
+# Notes - Tools
+## check listen ports (mac)
+```
+lsof -nP +c 15 | grep LISTEN
+```
