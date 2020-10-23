@@ -68,6 +68,10 @@ module.exports = {
             collection: "tasks",
             via: "takenby",
         },
+        labelsUser:{
+            colletion:'labels',
+            via:'usersRelatedTo'
+        }
     },
 
     customToJSON: function() {
