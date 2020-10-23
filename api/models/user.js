@@ -71,7 +71,68 @@ module.exports = {
         labelsUser:{
             colletion:'labels',
             via:'usersRelatedTo'
+        },
+       //-----------------New fields-------------------- 
+        userImg: {
+            type: 'ref',            
+            columnName: 'userImg',
+            columnType: 'MEDIUMBLOB',
+            required: false
+        },
+        headerImg: {
+            type: 'ref',
+            columnName: 'headerImg',
+            columnType: 'MEDIUMBLOB',
+            required: false
+        },
+        timeZone: {
+            type: "string",            
+            columnName: "timeZone",
+            columnType: "varchar(20)",
+            required: false
+        },
+        userRol: {
+            collection: 'rol',
+            via: 'rols'
+        },
+        jobTitle: {
+            type: "string",            
+            columnName: "jobTitle",
+            columnType: "varchar(20)",
+            required: true
+        },
+        company: {
+            model: 'company',
+            required: false
+        }, 
+        department: {
+            type: "string",            
+            columnName: "department",
+            columnType: "varchar(20)",
+            required: true
+        }, 
+        historiesTasks: { //must consider the behavior of this attribute (Through associations) --the history of a task can have more than one user
+            model: 'tasks', //References tasks
+            via: 'historyUsers', //References user
+            through: 'historyLog' //Junction table
+        },
+        relatedToPermissionEnv: { //one to one relationship with permission enviroment
+            model: 'permissionEnviroment',
+            unique: true
+        },
+        backupRelated: { // one to one relationship with backup model
+            model: 'backup',
+            unique: true
+        },
+        agency: { //one to many relationship
+            model: 'agency'
+        },
+        managedAgency: { //one to one relationship
+            collection: 'agency',
+            via: 'adminUser'
         }
+
+        //-----------------End of New fields-------------------- 
     },
 
     customToJSON: function() {
