@@ -68,7 +68,10 @@ module.exports = {
             collection: "tasks",
             via: "takenby",
         },
-
+        labelsUser:{
+            colletion:'labels',
+            via:'usersRelatedTo'
+        },
        //-----------------New fields-------------------- 
         userImg: {
             type: 'ref',            
