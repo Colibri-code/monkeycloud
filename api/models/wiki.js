@@ -27,7 +27,7 @@ module.exports = {
             required: false
         },
         relatedto: { //References to projects
-            model: projects,
+            model: 'projects',
             required: true
         }
     }

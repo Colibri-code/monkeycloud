@@ -85,14 +85,11 @@ module.exports = {
             model: 'workLog',
             unique: true                
         },         
-        notifications: { 
+        users: { // Error
             collection: 'user',
-            via: 'userNotification'
-        },
-        userNotification: {
-            collection: 'user',
-            via: 'notifications'
-        },
+            via: 'taskNotification', //it doesn't exist on user model
+            through: 'notifications'
+        },        
         //------------------------------
 
         priority: {

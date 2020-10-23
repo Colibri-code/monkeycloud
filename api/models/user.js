@@ -127,6 +127,11 @@ module.exports = {
         managedAgency: { //one to one relationship
             collection: 'agency',
             via: 'adminUser'
+        }, 
+        tasks: {
+            collection: 'tasks',
+            via: 'taskNotification',
+            through: 'notifications'
         }
 
         //-----------------End of New fields-------------------- 
