@@ -68,7 +68,10 @@ module.exports = {
             collection: "tasks",
             via: "takenby",
         },
-
+        labelsUser:{
+            colletion:'labels',
+            via:'usersRelatedTo'
+        },
        //-----------------New fields-------------------- 
         userImg: {
             type: 'ref',            
@@ -127,6 +130,11 @@ module.exports = {
         managedAgency: { //one to one relationship
             collection: 'agency',
             via: 'adminUser'
+        }, 
+        tasks: {
+            collection: 'tasks',
+            via: 'taskNotification',
+            through: 'notifications'
         }
 
         //-----------------End of New fields-------------------- 

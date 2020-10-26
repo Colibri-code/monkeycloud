@@ -26,7 +26,7 @@ module.exports = {
         },
         //Relationship fields
         relatedProject: { //relationship one to many
-            module: 'projects'            
+            model: 'projects',                        
         },
         hostRelatedTo: { //one to one relationship with host model
             collection: 'host',
