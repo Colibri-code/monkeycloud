@@ -10,6 +10,7 @@
     - [Download](#download-kibana-terminal)
     - [Run (terminal)](#run-kibana-terminal)
     - [Check (browser)](#check-kibana-web-browser)
+- [Logstash](#logstash)
 - [Architecture](#architecture)
     - [Basic Architecture](#basic-architecture)
         - [Nodes](#nodes)
@@ -64,6 +65,7 @@ curl http://localhost:9200
   "tagline" : "You Know, for Search"
 }
 ```
+
 ## Kibana
 ### Install Kibana
 *Site:* https://www.elastic.co/es/downloads/kibana
@@ -84,6 +86,27 @@ bin/kibana
 ```
 ### Check kibana (web browser)
 http://localhost:5601/
+
+## Logstash
+### Install Logstash
+*Site:* https://www.elastic.co/es/downloads/logstash
+
+You can change the urls to have latest versions and the appropriate files for your operating system
+
+### Download Logstash (terminal)
+```
+wget https://artifacts.elastic.co/downloads/logstash/logstash-7.9.3.tar.gz
+wget https://artifacts.elastic.co/downloads/logstash/logstash-7.9.3.tar.gz.sha512
+shasum -a 512 -c logstash-7.9.3.tar.gz.sha512
+tar -xzf logstash-7.9.3.tar.gz
+```
+### Prepare a logstash.conf config file
+
+### Run Logstash (terminal)
+```
+cd logstash-7.9.3
+bin/logstash -f logstash.conf
+```
 
 ## Architecture
 ### Basic Architecture
@@ -200,7 +223,7 @@ A decent number for most of these cases would be five, but it depends on several
 
 ### Replication
 
-# Index
+## Index
 
 # Notes - Tools
 ## check listen ports (mac)
