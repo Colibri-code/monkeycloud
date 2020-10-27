@@ -26,6 +26,7 @@
 - [Index](#index)
 
 ## Elasticsearch
+![](elasticsearch_logo.png)
 ### Install Elasticsearch
 *Site:* https://www.elastic.co/es/downloads/elasticsearch
 
@@ -67,6 +68,7 @@ curl http://localhost:9200
 ```
 
 ## Kibana
+![](kibana.png)
 ### Install Kibana
 *Site:* https://www.elastic.co/es/downloads/kibana
 
@@ -88,6 +90,7 @@ bin/kibana
 http://localhost:5601/
 
 ## Logstash
+![](logstash.png)
 ### Install Logstash
 *Site:* https://www.elastic.co/es/downloads/logstash
 
@@ -109,6 +112,7 @@ bin/logstash -f logstash.conf
 ```
 
 ## Architecture
+![](elastic%20stack.png)
 ### Basic Architecture
 #### Nodes
 When we start Elasticsearch, what actually happens is that we start a node. A node is essentially an Elasticsearch instance that stores data.
