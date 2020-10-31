@@ -14,7 +14,7 @@ module.exports = {
        columnName:'name',
        columnType:'varchar(20)',
        required:false
-       
+
     },
     package:{
         type:'json',
@@ -29,14 +29,9 @@ module.exports = {
         columnType: 'BLOB'
     },
     // si la relacion entre los labels y tasks
-    labelTask:{
-        model:'tasks',
-        unique:true
-    } ,
-    usersRelatedTo:{
-        colletion: 'user',
-        via:'labelsUser'
-    }
-    
+      tasks:{
+        colletion:'tasks',
+        via: 'labels'
+      }
   },
 }
