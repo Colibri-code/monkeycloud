@@ -27,11 +27,10 @@ module.exports = {
         columnName:'icon',
         required:true,
         columnType: 'BLOB'
+    },    
+    tasks:{
+      collection:'tasks',
+      via: 'labels'
     },
-    // si la relacion entre los labels y tasks
-      tasks:{
-        colletion:'tasks',
-        via: 'labels'
-      }
-  },
+  }
 }
