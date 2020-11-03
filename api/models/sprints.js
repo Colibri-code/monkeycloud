@@ -34,7 +34,7 @@ module.exports = {
         },
         endDate:{
             type:'ref',
-            columnName:'startDate',
+            columnName:'endDate',
             columnType:'DATE',
             required:true
         },
@@ -46,10 +46,8 @@ module.exports = {
         },
         isActive:{
             type:'boolean',
-            columnName:'isActive',
-            defaultsTo:false,
+            columnName:'isActive',            
             required:true
-
         },
         // duda con relacion entre sprint y historial , si la entidad es historyLog
         project: {

@@ -3,20 +3,14 @@ module.exports = {
         id: {
             type: 'number',
             columnName: 'idBill',
-            columnType: '',
+            columnType: 'int',
             unique: true,
             required: false,
             autoIncrement: true
-        },
-        country: {
+        },        
+        name: {
             type: 'string',
-            columnName: 'country',
-            columnType: 'varchar(50)',
-            required: true
-        },
-        firstName: {
-            type: 'string',
-            columnName: 'firstName',
+            columnName: 'name',
             columnType: 'varchar(20)',
             required: true
         },
@@ -24,19 +18,25 @@ module.exports = {
             type: 'string',
             columnName: 'lastName',
             columnType: 'varchar(20)',
-            required: true
+            required: true            
+        },
+        country: {
+            type: 'string',
+            columnName: 'country',
+            columnType: 'varchar(50)',
+            required: true          
         },
         companyName: {
             type: 'string',
             columnName: 'companyName',
             columnType: 'varchar(30)',
-            required: false
+            required: false,            
         },
         address: {
             type: 'string',
             columnName: 'address',
             columnType: 'varchar(50)',
-            required: true
+            required: true            
         },
         townCity: {
             type: 'string',
@@ -48,31 +48,31 @@ module.exports = {
             type: 'string',
             columnName: 'state',
             columnType: 'varchar(20)',
-            required: true
+            required: true            
         },
         zip: {
             type: 'string',
-            columnName: 'state',
+            columnName: 'zip',
             columnType: 'varchar(10)',
-            required: true
+            required: true        
         },
         emailAddress: {
             type: 'string',
-            columnName: 'state',
+            columnName: 'emailAddress',
             columnType: 'varchar(50)',
-            required: true
+            required: true        
         },
         phone: {
             type: 'string',
-            columnName: 'state',
+            columnName: 'phone',
             columnType: 'varchar(20)',
-            required: true
+            required: true        
         },
         orderNotes: { 
             type: 'string',
             columnName: 'orderNotes',
             columnType: 'varchar(100)',
-            required: false
+            required: false            
         }
     }
 }

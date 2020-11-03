@@ -1,5 +1,5 @@
 module.exports = {
-    attribute: {        
+    attributes: {        
         userNotification: {
             model: 'user' //Through associations relationship
         },

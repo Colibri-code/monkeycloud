@@ -67,11 +67,7 @@ module.exports = {
         workingon: {
             collection: "tasks",
             via: "takenby",
-        },
-        labelsUser:{
-            colletion:'labels',
-            via:'usersRelatedTo'
-        },
+        },        
        //-----------------New fields-------------------- 
         userImg: {
             type: 'ref',            
@@ -112,7 +108,7 @@ module.exports = {
             required: true
         }, 
         historiesTasks: { //must consider the behavior of this attribute (Through associations) --the history of a task can have more than one user
-            model: 'tasks', //References tasks
+            collection: 'tasks', //References tasks
             via: 'historyUsers', //References user
             through: 'historyLog' //Junction table
         },
@@ -133,7 +129,7 @@ module.exports = {
         }, 
         tasks: {
             collection: 'tasks',
-            via: 'taskNotification',
+            via: 'userNotification',
             through: 'notifications'
         }
 
