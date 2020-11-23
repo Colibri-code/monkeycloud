@@ -17,6 +17,10 @@ module.exports.routes = {
     'GET /user/read/:id': 'UserController.read',
     'PATCH /user/update': 'UserController.update',
     'DELETE /user/delete': 'UserController.delete',
+    'POST /user/checkout/subscription': 'UserController.subscription',
+    'POST /user/checkout/changeCreditCard': 'UserController.changeCreditCard',
+    'POST /user/checkout/cancel': 'UserController.cancelSubscription',
+    'POST /user/checkout/test': 'UserController.test',
 
 
     'POST /languages/create': 'LanguagesController.create',
