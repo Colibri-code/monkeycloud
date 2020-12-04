@@ -44,6 +44,15 @@ module.exports = {
     }
   },
 
+  me: async function (req, res) {
+    try {
+      const User = await user.findOne(req.user);
+      res.send({ user: User });
+    } catch (error) {
+      res.serverError();
+    }
+  },
+
   update: async function (req, res) {
     try {
       const data = await user.update(req.user).set(req.body).fetch();
@@ -114,7 +123,6 @@ module.exports = {
         .set({ ...userUpdate, stripeSubId: subscription.id });
       res.send({ message: "Payment done successfully" });
     } catch (error) {
-      console.log(error);
       res.serverError(error);
     }
   },
@@ -144,14 +152,6 @@ module.exports = {
       res.send({ message: "Subscription cancel" });
     } catch (error) {
       res.serverError();
-    }
-  },
-  test: async function (req, res) {
-    try {
-      const subscriptions = await stripe.retrive("sub_ILkXbfhKd2fh0u");
-      res.send(subscriptions);
-    } catch (error) {
-      res.serverError(error);
     }
   },
 };

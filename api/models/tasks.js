@@ -68,7 +68,7 @@ module.exports = {
         },
         commentsTiming: {
             type: 'string',
-            required: true,
+            required: false,
             columnName: 'commentsTiming',
             columnType: 'varchar(45)'
         },
@@ -126,7 +126,23 @@ module.exports = {
             collection: 'user', //References user
             via: 'historyTask', //References task
             through: 'historyLog' //junction table (history log)
-        }
+        },
+        //-----------------------------------------------------------------------------------
+        isEpic:{
+            type: 'boolean',
+            defaultsTo: false,
+            columnName: 'isEpic',
+            columnType: 'boolean'
+        },
+        parents: {
+            collection: 'tasks',
+            via: 'children'
+          },
+          // Add the other side of a plural reflexive association
+          children: {
+            collection: 'tasks',
+            via: 'parents'
+          },
         //--------------------------End of new fields-----------------------------
     }
 }

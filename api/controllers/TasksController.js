@@ -38,4 +38,23 @@ module.exports = {
       return res.send("invalid input");
     }
   },
+  addSubTask: async function (req, res) {
+    try {
+      const task = await tasks.findOne(req.params.id);
+      if (!task.isEpic) throw new Error();
+      await tasks.addToCollection(req.body.taskId, "parents", req.params.id);
+      const epicTasks = await tasks.findOne(req.params.id).populate("children");
+      res.send(epicTasks);
+    } catch (error) {
+      res.serverError();
+    }
+  },
+  getEpicTasks: async function (req, res) {
+    try {
+      const epicTasks = await tasks.findOne(req.params.id).populate("children");
+      res.send(epicTasks);
+    } catch (error) {
+      res.serverError();
+    }
+  },
 };

@@ -15,6 +15,7 @@ module.exports.routes = {
     'POST /user/login': 'UserController.login',
     'POST /user/googlelogin': 'UserController.googleLogin',
     'GET /user/read/:id': 'UserController.read',
+    'GET /user/me': 'UserController.me',
     'PATCH /user/update': 'UserController.update',
     'DELETE /user/delete': 'UserController.delete',
     'POST /user/checkout/subscription': 'UserController.subscription',
@@ -57,6 +58,8 @@ module.exports.routes = {
     'GET /tasks/read/:id': 'TasksController.read',
     'PATCH /tasks/update': 'TasksController.update',
     'DELETE /tasks/delete/:id': 'TasksController.delete',
-
-
+    'POST /epic/:id/tasks': 'TasksController.addSubTask',
+    'GET /epic/:id/tasks': 'TasksController.getEpicTasks',
+    
+    
 };
