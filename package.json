@@ -10,7 +10,7 @@
         "google-auth-library": "^6.1.0",
         "jsonwebtoken": "^8.5.1",
         "moment": "^2.29.1",
-        "nodemailer": "^6.4.13",
+        "nodemailer": "^6.4.16",
         "nodemon": "^2.0.4",
         "sails": "^1.2.4",
         "sails-hook-cron": "^3.2.0",
